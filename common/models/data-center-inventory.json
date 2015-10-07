@@ -1,0 +1,204 @@
+{
+  "name": "DataCenterInventory",
+  "plural": "DataCenterInventories",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "agencyDataCenterId": {
+      "type": "string"
+    },
+    "legacyDataCenterId": {
+      "type": "string"
+    },
+    "recordStatus": {
+      "type": "string"
+    },
+    "recordValidity": {
+      "type": "string"
+    },
+    "agencyAbbreviation": {
+      "type": "string"
+    },
+    "component": {
+      "type": "string"
+    },
+    "officeName": {
+      "type": "string"
+    },
+    "dataCenterName": {
+      "type": "string"
+    },
+    "publishedName": {
+      "type": "string"
+    },
+    "coreClassification": {
+      "type": "string"
+    },
+    "nonCoreSubCategory": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "ownershipType": {
+      "type": "string"
+    },
+    "colocationProvider": {
+      "type": "string"
+    },
+    "colocationProviderType": {
+      "type": "string"
+    },
+    "governmentWideProvider": {
+      "type": "string"
+    },
+    "providingServices": {
+      "type": "string"
+    },
+    "percentServicesPaidByOtherAgencies": {
+      "type": "number"
+    },
+    "otherAgenciesServiced": {
+      "type": "string"
+    },
+    "dataCenterTier": {
+      "type": "string"
+    },
+    "grossFloorArea": {
+      "type": "number"
+    },
+    "totalCustomerFloorArea": {
+      "type": "number"
+    },
+    "annualCostPerSqFt": {
+      "type": "number"
+    },
+    "fte": {
+      "type": "number"
+    },
+    "fteCost": {
+      "type": "number"
+    },
+    "electricityIncludedInCost": {
+      "type": "string"
+    },
+    "electricityIsMetered": {
+      "type": "string"
+    },
+    "totalPowerCapacity": {
+      "type": "number"
+    },
+    "totalITPowerCapacity": {
+      "type": "number"
+    },
+    "avgElectricityUsage": {
+      "type": "number"
+    },
+    "avgITElectricityUsage": {
+      "type": "number"
+    },
+    "costPerKWH": {
+      "type": "number"
+    },
+    "rackCount": {
+      "type": "number"
+    },
+    "totalIBMMainframes": {
+      "type": "number"
+    },
+    "totalOtherMainframes": {
+      "type": "number"
+    },
+    "totalWindowsServers": {
+      "type": "number"
+    },
+    "totalUnixServers": {
+      "type": "number"
+    },
+    "totalLinuxServers": {
+      "type": "number"
+    },
+    "totalHPCClusterNodes": {
+      "type": "number"
+    },
+    "otherServers": {
+      "type": "number"
+    },
+    "totalVirtualHosts": {
+      "type": "number"
+    },
+    "totalVirtualOS": {
+      "type": "number"
+    },
+    "totalStorage": {
+      "type": "number"
+    },
+    "usedStorage": {
+      "type": "number"
+    },
+    "closingStage": {
+      "type": "string"
+    },
+    "closingFiscalYear": {
+      "type": "number"
+    },
+    "closingQuarter": {
+      "type": "number"
+    },
+    "realPropertyDisposition": {
+      "type": "string"
+    },
+    "realPropertyDispositionDate": {
+      "type": "date"
+    },
+    "totalFloorAreaEliminatedOrRepurposed": {
+      "type": "number"
+    },
+    "totalDecommissionedPhysicalServers": {
+      "type": "number"
+    },
+    "totalServersMovedToOtherDataCenter": {
+      "type": "number"
+    },
+    "overallFTEReduction": {
+      "type": "number"
+    },
+    "createdBy": {
+      "type": "number"
+    },
+    "createdDt": {
+      "type": "date"
+    },
+    "updatedBy": {
+      "type": "number"
+    },
+    "updatedDt": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+      "dataCenterInformation": {
+        "type": "belongsTo",
+        "model": "DataCenterInformation",
+        "foreignKey": "dataCenterInformationId"
+      }
+    },
+  "acls": [],
+  "methods": []
+}

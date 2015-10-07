@@ -1,0 +1,184 @@
+{
+  "name": "DataCenterInformation",
+  "plural": "DataCenterInformations",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dataCenterId": {
+      "type": "string",
+      "required": true
+    },
+    "coreClassification": {
+      "type": "string"
+    },
+    "recordValidity": {
+      "type": "string"
+    },
+    "tcoClosingTargetDate": {
+      "type": "date"
+    },
+    "tcoClosingStage": {
+      "type": "string"
+    },
+    "realPropertyDisposition": {
+      "type": "string"
+    },
+    "realPropertyDispositionDate": {
+      "type": "date"
+    },
+    "totalFloorAreaEliminatedRepurposed": {
+      "type": "number"
+    },
+    "totalDecommissionedPhysicalServers": {
+      "type": "number"
+    },
+    "totalServersMovedToOtherDataCenter": {
+      "type": "number"
+    },
+    "overallFTEReduction": {
+      "type": "number"
+    },
+    "grossFloorArea": {
+      "type": "number"
+    },
+    "floorAreaClassification": {
+      "type": "number"
+    },
+    "annualCostPerSqFt": {
+      "type": "number"
+    },
+    "tcoElectricityIncludedInCost": {
+      "type": "string"
+    },
+    "tcoOwnershipType": {
+      "type": "string"
+    },
+    "tcoProvidingServices": {
+      "type": "string"
+    },
+    "percentageOfServicesPaidByOtherAgencies": {
+      "type": "number"
+    },
+    "listOfAgenciesServiced": {
+      "type": "string"
+    },
+    "providerName": {
+      "type": "string"
+    },
+    "tcoDataCenterTier": {
+      "type": "string"
+    },
+    "fte": {
+      "type": "number"
+    },
+    "fteCost": {
+      "type": "string"
+    },
+    "tcoElectricityIsMetered": {
+      "type": "string"
+    },
+    "totalPowerCapacity": {
+      "type": "number"
+    },
+    "averageElectricityUsage": {
+      "type": "number"
+    },
+    "totalITPowerCapacity": {
+      "type": "number"
+    },
+    "averageITElectricityUsage": {
+      "type": "number"
+    },
+    "costperkWh": {
+      "type": "number"
+    },
+    "wattsPerSqFt": {
+      "type": "number"
+    },
+    "pue": {
+      "type": "number"
+    },
+    "rackCount": {
+      "type": "number"
+    },
+    "sqFtperRack": {
+      "type": "number"
+    },
+    "totalIBMMainframes": {
+      "type": "number"
+    },
+    "totalOtherMainframes": {
+      "type": "number"
+    },
+    "totalWindowsServers": {
+      "type": "number"
+    },
+    "totalUnixServers": {
+      "type": "number"
+    },
+    "totalLinuxServers": {
+      "type": "number"
+    },
+    "totalHPCClusterNodes": {
+      "type": "number"
+    },
+    "otherServers": {
+      "type": "number"
+    },
+    "totalVirtualHosts": {
+      "type": "number"
+    },
+    "totalServerCount": {
+      "type": "number"
+    },
+    "totalVirtualOS": {
+      "type": "number"
+    },
+    "totalOSCount": {
+      "type": "number"
+    },
+    "totalStorage": {
+      "type": "number"
+    },
+    "usedStorage": {
+      "type": "number"
+    },
+    "storageUtilization": {
+      "type": "number"
+    },
+    "comments": {
+      "type": "string"
+    },
+    "quarter": {
+      "type": "number"
+    },
+    "Year": {
+      "type": "number"
+    },
+    "createdBy": {
+      "type": "number"
+    },
+    "createdDt": {
+      "type": "date"
+    },
+    "updatedBy": {
+      "type": "number"
+    },
+    "updatedDt": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+      "dataCenterInventories": {
+        "type": "hasMany",
+        "model": "DataCenterInventory",
+        "foreignKey": "dataCenterInformationId"
+      }
+    },
+  "acls": [],
+  "methods": []
+}
