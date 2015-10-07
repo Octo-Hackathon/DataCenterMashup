@@ -7,6 +7,10 @@
     "validateUpsert": true
   },
   "properties": {
+    "dataCenterId": {
+      "type": "string",
+      "required": true
+    },
     "agencyDataCenterId": {
       "type": "string"
     },
@@ -158,13 +162,13 @@
       "type": "number"
     },
     "closingQuarter": {
-      "type": "number"
+      "type": "string"
     },
     "realPropertyDisposition": {
       "type": "string"
     },
     "realPropertyDispositionDate": {
-      "type": "date"
+      "type": "string"
     },
     "totalFloorAreaEliminatedOrRepurposed": {
       "type": "number"
@@ -193,12 +197,12 @@
   },
   "validations": [],
   "relations": {
-      "dataCenterInformation": {
-        "type": "belongsTo",
+      "dataCenterInformations": {
+        "type": "hasMany",
         "model": "DataCenterInformation",
-        "foreignKey": "dataCenterInformationId"
+        "foreignKey": "dataCenterInventoryId"
       }
-    },
+  },
   "acls": [],
   "methods": []
 }
