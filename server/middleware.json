@@ -12,16 +12,18 @@
       }
     }
   },
-  "session": {
-  },
-  "auth": {
-  },
+  "session": {},
+  "auth": {},
   "parse": {
+    "body-parser#json": {},
+    "body-parser#urlencoded": {
+      "params": {
+        "extended": true
+      }
+    }
   },
-  "routes": {
-  },
-  "files": {
-  },
+  "routes": {},
+  "files": {},
   "final": {
     "loopback#urlNotFound": {}
   },
