@@ -1,6 +1,6 @@
 {
   "name": "DataCenterInformation",
-  "plural": "DataCenterInformations",
+  "plural": "dataCenterInformations",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -151,7 +151,7 @@
     "quarter": {
       "type": "number"
     },
-    "Year": {
+    "year": {
       "type": "number"
     },
     "createdBy": {

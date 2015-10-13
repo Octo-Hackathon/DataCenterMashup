@@ -1,6 +1,6 @@
 {
   "name": "DataCenterInventory",
-  "plural": "DataCenterInventories",
+  "plural": "dataCenterInventories",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -197,11 +197,11 @@
   },
   "validations": [],
   "relations": {
-      "dataCenterInformations": {
-        "type": "hasMany",
-        "model": "DataCenterInformation",
-        "foreignKey": "dataCenterInventoryId"
-      }
+    "dataCenterInformations": {
+      "type": "hasMany",
+      "model": "DataCenterInformation",
+      "foreignKey": "dataCenterInventoryId"
+    }
   },
   "acls": [],
   "methods": []

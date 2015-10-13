@@ -6,4 +6,7 @@ module.exports = function(app) {
   dataSource.autoupdate('DataCenterInventory', function(err) {
     if (err) throw err;
   });
+  dataSource.autoupdate('Lookup', function(err) {
+    if (err) throw err;
+  });
 };

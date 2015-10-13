@@ -16,6 +16,8 @@
     "loopback-boot": "^2.6.5",
     "loopback-connector-mysql": "^2.2.0",
     "loopback-datasource-juggler": "^2.19.0",
+    "mysql": "^2.9.0",
+    "request": "^2.65.0",
     "serve-favicon": "^2.0.1",
     "xlsx": "^0.8.0"
   },
