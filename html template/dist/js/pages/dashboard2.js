@@ -17,27 +17,17 @@ $(function () {
   var salesChart = new Chart(salesChartCanvas);
 
   var salesChartData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: ["Q4 2014", "Q1 2015", "Q2 2015", "Q3 2015"],
     datasets: [
       {
-        label: "Electronics",
-        fillColor: "rgb(210, 214, 222)",
-        strokeColor: "rgb(210, 214, 222)",
-        pointColor: "rgb(210, 214, 222)",
-        pointStrokeColor: "#c1c7d1",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgb(220,220,220)",
-        data: [65, 59, 80, 81, 56, 55, 40]
-      },
-      {
-        label: "Digital Goods",
+        label: "Cost Avoidance",
         fillColor: "rgba(60,141,188,0.9)",
         strokeColor: "rgba(60,141,188,0.8)",
         pointColor: "#3b8bba",
         pointStrokeColor: "rgba(60,141,188,1)",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(60,141,188,1)",
-        data: [28, 48, 40, 19, 86, 27, 90]
+        data: [620, 550, 537, 610]
       }
     ]
   };
@@ -56,11 +46,11 @@ $(function () {
     //Boolean - Whether to show vertical lines (except Y axis)
     scaleShowVerticalLines: true,
     //Boolean - Whether the line is curved between points
-    bezierCurve: true,
+    bezierCurve: false,
     //Number - Tension of the bezier curve between points
     bezierCurveTension: 0.3,
     //Boolean - Whether to show a dot for each point
-    pointDot: false,
+    pointDot: true,
     //Number - Radius of each point dot in pixels
     pointDotRadius: 4,
     //Number - Pixel width of point dot stroke
