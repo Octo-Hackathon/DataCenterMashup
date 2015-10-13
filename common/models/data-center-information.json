@@ -1,6 +1,6 @@
 {
   "name": "DataCenterInformation",
-  "plural": "DataCenterInformations",
+  "plural": "dataCenterInformations",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

@@ -34,8 +34,12 @@
     "dataSource": "mysql",
     "public": true
   },
-  "analytics": {
+  "Analytics": {
     "dataSource": null,
+    "public": true
+  },
+  "Lookup": {
+    "dataSource": "mysql",
     "public": true
   }
 }

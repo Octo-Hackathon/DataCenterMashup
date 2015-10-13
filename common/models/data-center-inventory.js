@@ -1,5 +1,6 @@
 var async = require('async');
 var request = require('request');
+var loopback = require('loopback');
 
 module.exports = function(DataCenterInventory) {
 
@@ -69,13 +70,35 @@ module.exports = function(DataCenterInventory) {
 					}
 				}
 				var eachURL = url + "&location="+ JSON.stringify(location);
-				request(eachURL, function (error, response, body) {
-					var responseOBJ = JSON.parse(body);
-					if(error){
+				//Check cache if not make rest call
+				loopback.findModel('Lookup').findOne({where: {key:eachURL}}, function(err, lookup){
+					if(err){
 						async_callback(error);
 					}else{
-						eachDataCenter.coord = responseOBJ.results[0].locations[0].latLng;							
-						async_callback();
+						if(lookup){
+							var responseOBJ = JSON.parse(lookup.value);
+							eachDataCenter.coord = responseOBJ.results[0].locations[0].latLng;							
+							async_callback();
+						}else{
+							request(eachURL, function (error, response, body) {
+								var responseOBJ = JSON.parse(body);
+								if(error){
+									async_callback(error);
+								}else{
+									loopback.findModel('Lookup').create({key:eachURL, value:body}, 
+													function(err, obj){
+										//console.log(obj);
+										if(err){
+											async_callback(error);											
+										}else{
+											eachDataCenter.coord = responseOBJ.results[0].locations[0].latLng;							
+											async_callback();
+										}
+
+									});									
+								}
+							});
+						}
 					}
 				});				
 			},function(err){

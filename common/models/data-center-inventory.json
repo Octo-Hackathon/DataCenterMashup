@@ -1,6 +1,6 @@
 {
   "name": "DataCenterInventory",
-  "plural": "DataCenterInventories",
+  "plural": "dataCenterInventories",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

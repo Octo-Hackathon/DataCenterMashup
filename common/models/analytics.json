@@ -1,5 +1,5 @@
 {
-  "name": "analytics",
+  "name": "Analytics",
   "plural": "analytics",
   "base": "Model",
   "idInjection": true,
