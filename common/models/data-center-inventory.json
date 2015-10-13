@@ -197,11 +197,11 @@
   },
   "validations": [],
   "relations": {
-      "dataCenterInformations": {
-        "type": "hasMany",
-        "model": "DataCenterInformation",
-        "foreignKey": "dataCenterInventoryId"
-      }
+    "dataCenterInformations": {
+      "type": "hasMany",
+      "model": "DataCenterInformation",
+      "foreignKey": "dataCenterInventoryId"
+    }
   },
   "acls": [],
   "methods": []

@@ -151,7 +151,7 @@
     "quarter": {
       "type": "number"
     },
-    "Year": {
+    "year": {
       "type": "number"
     },
     "createdBy": {

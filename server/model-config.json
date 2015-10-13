@@ -33,5 +33,9 @@
   "DataCenterInventory": {
     "dataSource": "mysql",
     "public": true
+  },
+  "analytics": {
+    "dataSource": null,
+    "public": true
   }
 }
