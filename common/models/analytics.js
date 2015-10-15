@@ -98,9 +98,14 @@ module.exports = function(Analytics) {
 				var difference = {};
 				difference.quarter1 = quartersRef[quarter1Data.quarter] + " "+ quarter1Data.year;
 				difference.quarter2 = quartersRef[quarter2Data.quarter] + " "+ quarter2Data.year;				
+				difference.fteCost = quarter2Data.fteCost - quarter1Data.fteCost;
+				difference.averageElectricityUsage = quarter2Data.averageElectricityUsage - quarter1Data.averageElectricityUsage;				
+				difference.averageITElectricityUsage = quarter2Data.averageITElectricityUsage - quarter1Data.averageITElectricityUsage;
 				difference.totalStorage = quarter2Data.totalStorage - quarter1Data.totalStorage;
 				difference.usedStorage = quarter2Data.usedStorage - quarter1Data.usedStorage;
-				difference.totalVirtualOS = quarter2Data.totalVirtualOS - quarter1Data.totalVirtualOS;
+				difference.totalVirtualHosts = quarter2Data.totalVirtualHosts - quarter1Data.totalVirtualHosts;
+				difference.totalVirtualOS = quarter2Data.totalVirtualOS - quarter1Data.totalVirtualOS;				
+				difference.storageUtilization = quarter2Data.storageUtilization - quarter1Data.storageUtilization;
 				difference.totalOSCount = quarter2Data.totalOSCount - quarter1Data.totalOSCount;
 				difference.totalWindowsServers = quarter2Data.totalWindowsServers - quarter1Data.totalWindowsServers;
 				difference.totalUnixServers = quarter2Data.totalUnixServers - quarter1Data.totalUnixServers;
@@ -129,7 +134,13 @@ module.exports = function(Analytics) {
 	calculateQuarterlyTotals = function(quarterObj, dataCenterId, cb){
 		var connection = getConnection();
 		connection.connect();
-		var selectClause = "select quarter quarter, year year, sum(totalStorage) totalStorage, sum(usedStorage) usedStorage, sum(totalVirtualOS) totalVirtualOS, sum(totalOSCount) totalOSCount, sum(totalWindowsServers) totalWindowsServers, sum(totalUnixServers) totalUnixServers, sum(totalLinuxServers) totalLinuxServers, sum(totalHPCClusterNodes) totalHPCClusterNodes, sum(otherServers) otherServers, sum(totalDecommissionedPhysicalServers) totalDecommissionedPhysicalServers";
+		var selectClause = "select quarter quarter, year year, sum(fteCost) fteCost, sum(averageElectricityUsage) averageElectricityUsage, "
+							+"sum(averageITElectricityUsage) averageITElectricityUsage, sum(totalStorage) totalStorage, sum(usedStorage) usedStorage,"
+							+" sum(totalVirtualOS) totalVirtualOS, sum(totalOSCount) totalOSCount,"
+							+" sum(totalVirtualHosts) totalVirtualHosts, sum(storageUtilization) storageUtilization, "
+							+" sum(totalWindowsServers) totalWindowsServers, sum(totalUnixServers) totalUnixServers,"
+							+" sum(totalLinuxServers) totalLinuxServers, sum(totalHPCClusterNodes) totalHPCClusterNodes,"
+							+" sum(otherServers) otherServers, sum(totalDecommissionedPhysicalServers) totalDecommissionedPhysicalServers";
 		var fromClause = " from datacenterinformation ";
 		var groupByClause = " group by quarter ";		
 		var whereClause = "";
