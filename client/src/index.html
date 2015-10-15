@@ -20,12 +20,16 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-red sidebar-mini">
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-    <div ui-view="header"></div>
-    <div ui-view tabindex="-1"></div>
-    <div ui-view="footer"></div>
+    <div class="wrapper">
+        <div id="header-view" ui-view="header"></div>
+        <div id="content" ui-view tabindex="-1"></div>
+        <div ui-view="footer"></div>
+    </div>
+    
+
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

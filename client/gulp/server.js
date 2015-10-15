@@ -39,6 +39,7 @@ function browserSyncInit(baseDir, browser, disableSync, cb) {
     startPath: '/',
     server: server,
     browser: browser,
+    port:3333
   };
 
   // http://stackoverflow.com/questions/27579007/how-to-temporarily-disable-browsersync

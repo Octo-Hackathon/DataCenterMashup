@@ -33,6 +33,9 @@ exports.wiredep = {
     'jquery-ui': {
       main: ['ui/core.js', 'ui/widget.js', 'ui/datepicker.js']
     },
+    'angular-formly-templates-bootstrap': {
+      main: ['dist/angular-formly-templates-bootstrap.min.js']
+    },    
     'admin-lte': {
       main: ['dist/css/AdminLTE.css','dist/css/skins/_all-skins.min.css','dist/css/skins/skin-red.css']
     },

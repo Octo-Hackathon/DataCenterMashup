@@ -13,7 +13,6 @@
 @icon-font-path: '../../bower_components/bootstrap/fonts/';
 @fa-font-path: '../../bower_components/font-awesome/fonts';
 
-
 .thumbnail {
   height: 200px;
 
@@ -28,6 +27,36 @@ div[ui-view=content] {
 
 [dropdown] {
   cursor: pointer;
+}
+
+@import (inline) "../../bower_components/admin-lte/dist/css/AdminLTE.css";
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.section-divider {
+	margin-top:30px;
+	padding:0;
+}
+
+.section-divider.section-start {
+	margin-top:0;
+}
+
+.section-divider hr {
+	margin-top:5px;
+	margin-bottom:0;
+}
+
+#content, .content-wrapper {
+  min-height:850px;
 }
 
 /**

@@ -12,7 +12,10 @@
       'toastr',
       'ngAria',
       'ngFileUpload',
-      'daterangepicker'
+      'daterangepicker',
+      'formly',
+      'formlyBootstrap',
+      'smart-table'
     ]);
 
 })();
