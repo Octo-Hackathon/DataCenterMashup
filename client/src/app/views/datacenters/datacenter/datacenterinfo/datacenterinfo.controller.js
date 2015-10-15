@@ -35,7 +35,7 @@
 			vm.model = Restangular.stripRestangular(dataCenterInformation)
 		}
 		else {
-			vm.model = {"dataCenterInventoryId":dataCenter.id,"coreClassification":"1","recordValidity":"1","tcoClosingTargetDate":"1","tcoClosingStage":"1","realPropertyDisposition":"1","realPropertyDispositionDate":"1","totalFloorAreaEliminatedRepurposed":"1","totalDecommissionedPhysicalServers":"1","totalServersMovedToOtherDataCenter":"1","overallFTEReduction":"1","grossFloorArea":"1","floorAreaClassification":"1","annualCostPerSqFt":"1","tcoElectricityIncludedInCost":"1","tcoOwnershipType":"1","tcoProvidingServices":"11","percentageOfServicesPaidByOtherAgencies":"1","listOfAgenciesServiced":"1","providerName":"1","tcoDataCenterTier":"1","fte":"1","fteCost":"1","tcoElectricityIsMetered":"1","totalPowerCapacity":"1","averageElectricityUsage":"1","totalITPowerCapacity":"1","averageITElectricityUsage":"1","costperkWh":"1","wattsPerSqFt":"1","pue":"1","rackCount":"1","sqFtperRack":"1","totalIBMMainframes":"1","totalOtherMainframes":"1","totalWindowsServers":"11","totalUnixServers":"1","totalLinuxServers":"1","totalHPCClusterNodes":"1","otherServers":"1","totalVirtualHosts":"1","totalServerCount":"1","totalVirtualOS":"1","totalOSCount":"1","totalStorage":"1","usedStorage":"1","storageUtilization":"1","comments":"1","quarter":"1","Year":"1"};
+			vm.model = {"dataCenterInventoryId":dataCenter.id,"coreClassification":"1","recordValidity":"1","tcoClosingTargetDate":"1","tcoClosingStage":"1","realPropertyDisposition":"1","realPropertyDispositionDate":"1","totalFloorAreaEliminatedRepurposed":"1","totalDecommissionedPhysicalServers":"1","totalServersMovedToOtherDataCenter":"1","overallFTEReduction":"1","grossFloorArea":"1","floorAreaClassification":"1","annualCostPerSqFt":"1","tcoElectricityIncludedInCost":"1","tcoOwnershipType":"1","tcoProvidingServices":"11","percentageOfServicesPaidByOtherAgencies":"1","listOfAgenciesServiced":"1","providerName":"1","tcoDataCenterTier":"1","fte":"1","fteCost":"1","tcoElectricityIsMetered":"1","totalPowerCapacity":"1","averageElectricityUsage":"1","totalITPowerCapacity":"1","averageITElectricityUsage":"1","costperkWh":"1","wattsPerSqFt":"1","pue":"1","rackCount":"1","sqFtperRack":"1","totalIBMMainframes":"1","totalOtherMainframes":"1","totalWindowsServers":"11","totalUnixServers":"1","totalLinuxServers":"1","totalHPCClusterNodes":"1","otherServers":"1","totalVirtualHosts":"1","totalServerCount":"1","totalVirtualOS":"1","totalOSCount":"1","totalStorage":"1","usedStorage":"1","storageUtilization":"1","comments":"1","quarter":"1","year":"1"};
 		}
 
 
@@ -509,7 +509,7 @@
 					{
 						className: 'col-sm-4',
 						type: 'input',
-						key: 'Year',
+						key: 'year',
 						templateOptions: {
 							label: 'Year',
 							className: 'form-control'

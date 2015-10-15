@@ -1,5 +1,11 @@
 ## Client
 
+## Install/Update/Run
+
+npm install
+bower install
+gulp serve
+
 ## Use Gulp tasks
 
 * `gulp` or `gulp build` to build an optimized version of your application in `/dist`

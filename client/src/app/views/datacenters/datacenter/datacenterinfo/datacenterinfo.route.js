@@ -28,7 +28,7 @@
       url: '',
       views: {
         '': {
-          templateUrl: 'app/views/datacenters/datacenter/datacenter.html',
+          templateUrl: 'app/views/datacenters/datacenter/datacenterinfo/datacenterinfo.html',
           controller: 'DataCenterInfoController',
           controllerAs: 'vm'
         }
@@ -44,7 +44,7 @@
       url: '/:dataCenterInfoId',
       views: {
         '': {
-          templateUrl: 'app/views/datacenters/datacenter/datacenter.html',
+          templateUrl: 'app/views/datacenters/datacenter/datacenterinfo/datacenterinfo.html',
           controller: 'DataCenterInfoController',
           controllerAs: 'vm'
         }
