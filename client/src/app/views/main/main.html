@@ -34,7 +34,7 @@
 
                       <div class="col-sm-6 col-xs-12 border-right">
 
-                          <h4 class="text-center">Most Cost Effective</h4>
+                          <h4 class="text-center">Cost Efficiency</h4>
                           <div class="table-responsive">
                             <table st-table="allQuarterlyCostData" class="table table-striped">
                               <thead>
@@ -57,7 +57,7 @@
                       </div><!-- /.col -->
                       <div class="col-sm-6 col-xs-12 border-right">
 
-                          <h4 class="text-center">Most Energy Efficient</h4>
+                          <h4 class="text-center">Energy Efficiency</h4>
                           <div class="table-responsive">
                             <table st-table="allQuarterlyElectricData" class="table table-striped">
                               <thead>
@@ -71,7 +71,7 @@
                               <tr ng-repeat="row in allQuarterlyElectricData | limitTo:5">
                                 <td><a>{{row.dataCenterId}}</a></td>
                                 <td>{{row.location}}</td>
-                                <td class="text-right">{{row.averageElectricityUsage | number}} kWh</td>
+                                <td class="text-right">{{row.averageElectricityUsage | number:0}} kWh</td>
                               </tr>
                               </tbody>
                             </table> 
@@ -141,7 +141,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="chart-responsive">
-
+                        <canvas id="doughnut" class="chart chart-doughnut" chart-options="energyChart.options" chart-legend="true" chart-data="energyChart.data" chart-labels="energyChart.labels"></canvas>
                         </div><!-- ./chart-responsive -->
                       </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -161,7 +161,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="chart-responsive">
-
+                          <canvas id="doughnut" class="chart chart-doughnut" chart-options="fteChart.options" chart-legend="true" chart-data="fteChart.data" chart-labels="fteChart.labels"></canvas> 
                         </div><!-- ./chart-responsive -->
                       </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -179,7 +179,24 @@
                   <div class="box-body">
                     <div class="row">
                       <div class="col-md-12">
-
+                        <table class="table table-striped">
+                          <thead>
+                          <tr>
+                            <th>Timestamp</th>
+                            <th>Data Center Id</th>
+                            <th>Data Center Name</th>
+                            <th>Activity</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td>March 10, 2001, 5:16 pm</td>
+                            <td>FDCCI-DC-45747</td>
+                            <td>5R-MN0902</td>
+                            <td>Added Q3 2015 Entry</td>
+                          </tr>
+                          </tbody>
+                        </table>                                                 
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->

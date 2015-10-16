@@ -27,8 +27,13 @@
         },
         allQuarterChartData: function($stateParams, Restangular) {
           return Restangular.one('analytics').one('getAllDataCenterCostAndElectricityUsageInfo').get({'quarterYear':'3:2015'});
-        }      
-        
+        },
+        fteChartData: function($stateParams, Restangular) {
+          return Restangular.one('analytics').one('getQuarterlyFTECost').get();
+        },          
+        electricityChartData: function($stateParams, Restangular) {
+          return Restangular.one('analytics').one('getQuarterlyElectricityUsage').get();
+        },         
       }
     });
   }
