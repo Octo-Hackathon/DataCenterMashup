@@ -41,7 +41,7 @@
       "type": "number"
     },
     "floorAreaClassification": {
-      "type": "number"
+      "type": "string"
     },
     "annualCostPerSqFt": {
       "type": "number"

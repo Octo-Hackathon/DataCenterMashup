@@ -1,6 +1,6 @@
 var mysql      = require('mysql');
 var async      = require('async');
-var quartersRef = ['XXX','March','June','September','December'];
+var quartersRef = ['XXX','Q1','Q2','Q3','Q4'];
 var datasources = require('../../server/datasources.json');
 module.exports = function(Analytics) {
 
@@ -237,8 +237,17 @@ module.exports = function(Analytics) {
 			connection.end();
 		  	if(err){
 				cb(err, null);
-			}			
-			cb(null, rows);	 
+			}
+			var result = {};		
+			var quarters = [];
+			var totalCosts = [];
+			for(var i in rows){
+				quarters.push(quartersRef[rows[i].quarter] + " "+ rows[i].year);
+				totalCosts.push(rows[i].totalCost);
+			}
+			result.quarters = quarters;
+			result.totalCosts = totalCosts;
+			cb(null, result);	 
 		  	
 		});
 	};
@@ -273,7 +282,7 @@ module.exports = function(Analytics) {
 		  description: 'Fetches total cost for the last 4 quarters from the given quarter year',
 		  accepts: [{arg: 'quarterYear', type: 'string', required: true},
                 {arg: 'dataCenterId', type: 'number', required: false}],
-		  returns: {arg: 'results', type: 'array'},
+		  returns: {arg: 'result', type: 'object'},
 		  http: {path: '/getTotalCost', verb: 'get'}
 		}
 	);
