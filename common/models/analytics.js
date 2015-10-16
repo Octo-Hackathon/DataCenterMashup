@@ -224,6 +224,8 @@ module.exports = function(Analytics) {
 					countsArray.push(counts);
 				}
 			}
+			result.quarters.reverse();  
+			result.counts.reverse(); 
 			cb(null, result);		
 		});
 	};
@@ -251,7 +253,7 @@ module.exports = function(Analytics) {
 
 			result.quarters = quarters;
 			result.labels = labels;
-			result.countsArray = countsArray;
+			result.counts = countsArray;
 
 			if(data && data.length >0){
 				for(var i in data){
@@ -263,6 +265,8 @@ module.exports = function(Analytics) {
 					countsArray.push(counts);
 				}
 			}
+			result.quarters.reverse();  
+			result.counts.reverse(); 
 			cb(null, result);		
 		});
 	};

@@ -12,6 +12,7 @@
     "cors": "^2.5.2",
     "errorhandler": "^1.1.1",
     "fast-csv": "^0.6.0",
+    "lodash": "^3.10.1",
     "loopback": "^2.14.0",
     "loopback-boot": "^2.6.5",
     "loopback-connector-mysql": "^2.2.0",
