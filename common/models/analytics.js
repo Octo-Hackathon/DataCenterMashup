@@ -324,7 +324,7 @@ module.exports = function(Analytics) {
 	};
 
 	/*
-		Implementation of getAllDataCenterCostInfo REST API endpoint.
+		Implementation of getAllDataCenterCostAndElectricityUsageInfo REST API endpoint.
 	*/
 	Analytics.getAllDataCenterCostAndElectricityUsageInfo = function(quarterYear, cb) {
 		var quarterObj;
@@ -363,6 +363,69 @@ module.exports = function(Analytics) {
 		});
 	};
 
+	/**
+		Implementation of getQuarterlyElectricityUsage REST API endpoint.
+	*/
+	Analytics.getQuarterlyElectricityUsage = function(quarterYear, dataCenterId, cb) {	
+		var quarterObj;
+		if(quarterYear){
+			quarterObj = parseQuarterInput(quarterYear);
+			if(!quarterObj.isValid){
+				cb(new Error("Invalid input for: quarterYear") , null);			
+			}		
+		}
+		calculateQuarterlyTotals(quarterObj, dataCenterId, function(err, data){
+			if(err){
+				cb(err, null);
+			}
+			var result = {};
+			var quarters = [];
+			var electricityUsage = [];
+			result.quarters = quarters;
+			result.electricityUsage = electricityUsage;
+			if(data && data.length >0){
+				for(var i in data){
+					var row = data[i];
+					var counts = [];
+					quarters.push(quartersRef[row.quarter] + " "+ row.year);
+					electricityUsage.push(row.averageElectricityUsage);
+				}
+			}
+			cb(null, result);		
+		});
+	};
+
+	/**
+		Implementation of getQuarterlyFTECost REST API endpoint.
+	*/
+	Analytics.getQuarterlyFTECost = function(quarterYear, dataCenterId, cb) {	
+		var quarterObj;
+		if(quarterYear){
+			quarterObj = parseQuarterInput(quarterYear);
+			if(!quarterObj.isValid){
+				cb(new Error("Invalid input for: quarterYear") , null);			
+			}		
+		}
+		calculateQuarterlyTotals(quarterObj, dataCenterId, function(err, data){
+			if(err){
+				cb(err, null);
+			}
+			var result = {};
+			var quarters = [];
+			var fteCost = [];
+			result.quarters = quarters;
+			result.fteCost = fteCost;
+			if(data && data.length >0){
+				for(var i in data){
+					var row = data[i];
+					var counts = [];
+					quarters.push(quartersRef[row.quarter] + " "+ row.year);
+					fteCost.push(row.fteCost);
+				}
+			}
+			cb(null, result);		
+		});
+	};	
 	//REST API Endpoint Configuration
  	Analytics.remoteMethod(
 	'getQuarterlyDifferences',
