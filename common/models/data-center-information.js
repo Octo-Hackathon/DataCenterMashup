@@ -71,25 +71,28 @@ module.exports = function(DataCenterInformation) {
 	  	var quarter;
 	  	var year;
 	  	var dataCenterInventoryId;
+	  	var componentName;
 	  	var id =0;
 		if(ctx.isNewInstance){
 			dataCenterInventoryId = ctx.instance.dataCenterInventoryId;
 			year = ctx.instance.year;
 			quarter = ctx.instance.quarter;
+			componentName = ctx.instance.componentName;
 		}else{
 			dataCenterInventoryId = ctx.data.dataCenterInventoryId;
 			year = ctx.data.year;
 			quarter = ctx.data.quarter;
 			id = ctx.data.id;
+			componentName = ctx.data.componentName;
 		}
-		DataCenterInformation.find({where: {dataCenterInventoryId:dataCenterInventoryId,quarter:quarter,year:year}}, 
+		DataCenterInformation.find({where: {dataCenterInventoryId:dataCenterInventoryId,quarter:quarter,year:year,componentName:componentName}}, 
 			function(err, informations){
 				if(err){
 					next(err);
 				}
 				if(informations && informations.length >0 ){
 					if(informations[0].id != id){
-						next(new Error("Information is duplicated for DataCenterId, Quarter and Year."));	
+						next(new Error("Information is duplicated for Data Center Id, Quarter, Year and Component Name."));	
 					}else{
 						next();
 					}				

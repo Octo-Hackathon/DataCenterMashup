@@ -154,6 +154,9 @@
     "year": {
       "type": "number"
     },
+    "componentName": {
+      "type": "string"
+    },
     "createdBy": {
       "type": "string"
     },

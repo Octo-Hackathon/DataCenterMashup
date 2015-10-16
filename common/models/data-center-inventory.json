@@ -183,13 +183,13 @@
       "type": "number"
     },
     "createdBy": {
-      "type": "number"
+      "type": "string"
     },
     "createdDt": {
       "type": "date"
     },
     "updatedBy": {
-      "type": "number"
+      "type": "string"
     },
     "updatedDt": {
       "type": "date"
