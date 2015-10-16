@@ -229,7 +229,10 @@ module.exports = function(Analytics) {
 				}
 			}
 			result.quarters.reverse();  
-			result.counts.reverse(); 
+			result.counts[0].reverse();
+			result.counts[1].reverse();
+			result.counts[2].reverse();
+			result.counts[3].reverse();
 			cb(null, result);		
 		});
 	};
@@ -269,7 +272,8 @@ module.exports = function(Analytics) {
 				}
 			}
 			result.quarters.reverse();  
-			result.counts.reverse(); 
+			result.counts[0].reverse(); 
+			result.counts[1].reverse();
 			cb(null, result);		
 		});
 	};
@@ -335,7 +339,7 @@ module.exports = function(Analytics) {
  	Analytics.remoteMethod(
 	'getQuarterlyStorageCounts',
 		{
-		  description: 'Fetches quarterly totals',
+		  description: ['Fetches quarterly storage totals for the given quarterYear.'],
 		  accepts: [{arg: 'quarterYear', type: 'string', required: false},
                 {arg: 'dataCenterId', type: 'number', required: false}],
 		  returns: {arg: 'results', type: 'object'},
@@ -346,7 +350,7 @@ module.exports = function(Analytics) {
 	Analytics.remoteMethod(
 	'getQuarterlyServerCounts',
 		{
-		  description: 'Fetches quarterly totals',
+		  description: ['Fetches quarterly server totals for the given quarterYear.'],
 		  accepts: [{arg: 'quarterYear', type: 'string', required: false},
                 {arg: 'dataCenterId', type: 'number', required: false}],
 		  returns: {arg: 'results', type: 'object'},
