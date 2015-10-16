@@ -83,7 +83,8 @@ csv.fromStream(stream, {headers: [
         count = dataSet.length;
       }
 
-      dataSet.forEach(function(data) {         
+      dataSet.forEach(function(data) { 
+      data.createdBy = "Vernon Samuel ";        
         DataCenterInventory.create(data, function(err, record) {
           count--;
           if (count === 0) {
