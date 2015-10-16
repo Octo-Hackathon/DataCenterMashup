@@ -1,6 +1,6 @@
 var mysql      = require('mysql');
 var async      = require('async');
-var quartersRef = ['XXX','March','June','September','December'];
+var quartersRef = ['XXX','Q1','Q2','Q3','Q4'];
 var datasources = require('../../server/datasources.json');
 module.exports = function(Analytics) {
 
@@ -142,8 +142,11 @@ module.exports = function(Analytics) {
 							+" sum(totalLinuxServers) totalLinuxServers, sum(totalHPCClusterNodes) totalHPCClusterNodes,"
 							+" sum(otherServers) otherServers, sum(totalDecommissionedPhysicalServers) totalDecommissionedPhysicalServers";
 		var fromClause = " from datacenterinformation ";
-		var groupByClause = " group by quarter ";		
+		var groupByClause = " group by quarter, year ";	
+		var orderByClause = " order by year desc, quarter desc ";		
+		var limitClause = " LIMIT 4 ";
 		var whereClause = "";
+
 		if(quarterObj && quarterObj.quarter){
 			if(whereClause.length == 0){
 				whereClause = whereClause + " where ";
@@ -152,6 +155,7 @@ module.exports = function(Analytics) {
 			}
 			whereClause = whereClause + " quarter = " + quarterObj.quarter;
 		}
+
 		if(quarterObj && quarterObj.year){
 			if(whereClause.length == 0){
 				whereClause = whereClause + " where ";
@@ -160,6 +164,7 @@ module.exports = function(Analytics) {
 			}
 			whereClause = whereClause + " year = " + quarterObj.year;
 		}
+
 		if(dataCenterId){
 			if(whereClause.length == 0){
 				whereClause = whereClause + " where ";
@@ -168,8 +173,8 @@ module.exports = function(Analytics) {
 			}
 			whereClause = whereClause + " dataCenterInventoryId = " + dataCenterId;
 		}
-		var query = selectClause + fromClause + whereClause + groupByClause;
-		//console.log("Query ::: "+ query);
+		var query = selectClause + fromClause + whereClause + groupByClause + orderByClause + limitClause;
+		console.log("Query ::: "+ query);
 		connection.query(query, function(err, rows, fields) {
 			connection.end();
 		  	if(err){
@@ -181,9 +186,9 @@ module.exports = function(Analytics) {
 	}
 
 	/**
-		Implementation of getQuarterlyTotals REST API endpoint.
+		Implementation of getQuarterlyServerCounts REST API endpoint.
 	*/
-	Analytics.getQuarterlyTotals = function(quarterYear, dataCenterId, cb) {	
+	Analytics.getQuarterlyServerCounts = function(quarterYear, dataCenterId, cb) {	
 		var quarterObj;
 		if(quarterYear){
 			quarterObj = parseQuarterInput(quarterYear);
@@ -195,14 +200,122 @@ module.exports = function(Analytics) {
 			if(err){
 				cb(err, null);
 			}
+			var result = {};
+			var quarters = [];
+			var labels = [	"Windows Servers",
+							"Unix Servers",
+							"Linux Servers",
+							"Other Servers"];
+			result.quarters = quarters;
+			result.labels = labels;
+			result.counts = [];
+			var windowsServers = [];
+			var unixServers = [];
+			var linuxServers = [];
+			var otherServers = [];
+			result.counts.push(windowsServers);
+			result.counts.push(unixServers);
+			result.counts.push(linuxServers);
+			result.counts.push(otherServers);
 			if(data && data.length >0){
 				for(var i in data){
 					var row = data[i];
-					row.quarter = quartersRef[row.quarter] + " "+ row.year;
-					row.year = undefined;
+					var counts = [];
+					quarters.push(quartersRef[row.quarter] + " "+ row.year);
+					windowsServers.push(row.totalWindowsServers);
+					unixServers.push(row.totalUnixServers);
+					linuxServers.push(row.totalLinuxServers);
+					otherServers.push(row.otherServers);
 				}
 			}
-			cb(null, data);		
+			result.quarters.reverse();  
+			result.counts.reverse(); 
+			cb(null, result);		
+		});
+	};
+
+	/**
+		Implementation of getQuarterlyStorageCounts REST API endpoint.
+	*/
+	Analytics.getQuarterlyStorageCounts = function(quarterYear, dataCenterId, cb) {	
+		var quarterObj;
+		if(quarterYear){
+			quarterObj = parseQuarterInput(quarterYear);
+			if(!quarterObj.isValid){
+				cb(new Error("Invalid input for: quarterYear") , null);			
+			}		
+		}
+		calculateQuarterlyTotals(quarterObj, dataCenterId, function(err, data){
+			if(err){
+				cb(err, null);
+			}
+			var result = {};
+			var quarters = [];
+			var labels = [	"Used Storage",
+							"Total Storage"];
+			var usedStorageCounts = [];
+			var totalStorageCounts = [];
+			result.quarters = quarters;
+			result.labels = labels;
+			result.counts = [];
+			result.counts.push(usedStorageCounts);
+			result.counts.push(totalStorageCounts);
+			if(data && data.length >0){
+				for(var i in data){
+					var row = data[i];
+					quarters.push(quartersRef[row.quarter] + " "+ row.year);
+					usedStorageCounts.push(row.usedStorage);
+					totalStorageCounts.push(row.totalStorage);
+				}
+			}
+			result.quarters.reverse();  
+			result.counts.reverse(); 
+			cb(null, result);		
+		});
+	};
+
+	/*
+		Implementation of getQuarterlyCost REST API endpoint.
+	*/
+	Analytics.getTotalCost = function(quarterYear, dataCenterId, cb) {
+		var quarterObj;
+		if(quarterYear){
+			quarterObj = parseQuarterInput(quarterYear);
+			if(!quarterObj.isValid){
+				cb(new Error("Invalid input for: quarterYear") , null);			
+			}		
+		}
+		var connection = getConnection();
+		connection.connect();
+		var selectClause = "select quarter quarter, year year, ( sum(ifnull(fteCost,0)) + ( sum(ifnull(averageElectricityUsage,0)) * ifnull(costperkWh,0) ) ) totalCost";
+		var fromClause = " from datacenterinformation ";
+		var groupByClause = " group by quarter, year ";	
+		var orderByClause = " order by year desc, quarter desc ";
+		var whereClause = " where (year = "+ quarterObj.year 
+							+ " and quarter <= "+ quarterObj.quarter 
+							+ " ) or (year < "+ quarterObj.year + ") ";
+		if(dataCenterId){
+			whereClause = whereClause + " and dataCenterInventoryId = " + dataCenterId;
+		}
+		var limitClause = " LIMIT 4 ";
+		var query = selectClause + fromClause + whereClause + groupByClause + orderByClause + limitClause;
+		console.log("Query ::: "+ query);
+		connection.query(query, function(err, rows, fields) {
+			connection.end();
+		  	if(err){
+				cb(err, null);
+			}
+			var result = {};		
+			var quarters = [];
+			var totalCosts = [];
+			for(var i in rows){
+				quarters.push(quartersRef[rows[i].quarter] + " "+ rows[i].year);
+				totalCosts.push(rows[i].totalCost);
+			}
+			result.quarters = quarters;
+			result.totalCosts = totalCosts;
+			cb(null, result);	 
+		  	
 		});
 	};
 
@@ -210,24 +323,45 @@ module.exports = function(Analytics) {
  	Analytics.remoteMethod(
 	'getQuarterlyDifferences',
 		{
-		  description: 'Fetch all data centers',
+		  description: 'Fetches quarterly differences',
 		  accepts: [{arg: 'quarterYear1', type: 'string', required: true},
 		  		{arg: 'quarterYear2', type: 'string', required: true},
                 {arg: 'dataCenterId', type: 'number', required: false}],
-		  returns: {arg: 'results', type: 'array'},
+		  returns: {arg: 'results', type: 'object'},
 		  http: {path: '/getQuarterlyDifferences', verb: 'get'}
 		}
 	);
 
  	Analytics.remoteMethod(
-	'getQuarterlyTotals',
+	'getQuarterlyStorageCounts',
 		{
-		  description: 'Fetch all data centers',
+		  description: 'Fetches quarterly totals',
 		  accepts: [{arg: 'quarterYear', type: 'string', required: false},
                 {arg: 'dataCenterId', type: 'number', required: false}],
-		  returns: {arg: 'results', type: 'array'},
-		  http: {path: '/getQuarterlyTotals', verb: 'get'}
+		  returns: {arg: 'results', type: 'object'},
+		  http: {path: '/getQuarterlyStorageCounts', verb: 'get'}
 		}
 	);
 
+	Analytics.remoteMethod(
+	'getQuarterlyServerCounts',
+		{
+		  description: 'Fetches quarterly totals',
+		  accepts: [{arg: 'quarterYear', type: 'string', required: false},
+                {arg: 'dataCenterId', type: 'number', required: false}],
+		  returns: {arg: 'results', type: 'object'},
+		  http: {path: '/getQuarterlyServerCounts', verb: 'get'}
+		}
+	);
+
+	Analytics.remoteMethod(
+	'getTotalCost',
+		{
+		  description: 'Fetches total cost for the last 4 quarters from the given quarter year',
+		  accepts: [{arg: 'quarterYear', type: 'string', required: true},
+                {arg: 'dataCenterId', type: 'number', required: false}],
+		  returns: {arg: 'result', type: 'object'},
+		  http: {path: '/getTotalCost', verb: 'get'}
+		}
+	);
 };

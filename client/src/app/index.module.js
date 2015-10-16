@@ -15,7 +15,8 @@
       'daterangepicker',
       'formly',
       'formlyBootstrap',
-      'smart-table'
+      'smart-table',
+      'chart.js'
     ]);
 
 })();

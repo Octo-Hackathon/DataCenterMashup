@@ -30,6 +30,8 @@
 
 		vm.model = {};
 
+		vm.statesList = [{"name":"Alabama","value":"AL"},{"name":"Alaska","value":"AK"},{"name":"American Samoa","value":"AS"},{"name":"Arizona","value":"AZ"},{"name":"Arkansas","value":"AR"},{"name":"California","value":"CA"},{"name":"Colorado","value":"CO"},{"name":"Connecticut","value":"CT"},{"name":"Delaware","value":"DE"},{"name":"District Of Columbia","value":"DC"},{"name":"Federated States Of Micronesia","value":"FM"},{"name":"Florida","value":"FL"},{"name":"Georgia","value":"GA"},{"name":"Guam","value":"GU"},{"name":"Hawaii","value":"HI"},{"name":"Idaho","value":"ID"},{"name":"Illinois","value":"IL"},{"name":"Indiana","value":"IN"},{"name":"Iowa","value":"IA"},{"name":"Kansas","value":"KS"},{"name":"Kentucky","value":"KY"},{"name":"Louisiana","value":"LA"},{"name":"Maine","value":"ME"},{"name":"Marshall Islands","value":"MH"},{"name":"Maryland","value":"MD"},{"name":"Massachusetts","value":"MA"},{"name":"Michigan","value":"MI"},{"name":"Minnesota","value":"MN"},{"name":"Mississippi","value":"MS"},{"name":"Missouri","value":"MO"},{"name":"Montana","value":"MT"},{"name":"Nebraska","value":"NE"},{"name":"Nevada","value":"NV"},{"name":"New Hampshire","value":"NH"},{"name":"New Jersey","value":"NJ"},{"name":"New Mexico","value":"NM"},{"name":"New York","value":"NY"},{"name":"North Carolina","value":"NC"},{"name":"North Dakota","value":"ND"},{"name":"Northern Mariana Islands","value":"MP"},{"name":"Ohio","value":"OH"},{"name":"Oklahoma","value":"OK"},{"name":"Oregon","value":"OR"},{"name":"Palau","value":"PW"},{"name":"Pennsylvania","value":"PA"},{"name":"Puerto Rico","value":"PR"},{"name":"Rhode Island","value":"RI"},{"name":"South Carolina","value":"SC"},{"name":"South Dakota","value":"SD"},{"name":"Tennessee","value":"TN"},{"name":"Texas","value":"TX"},{"name":"Utah","value":"UT"},{"name":"Vermont","value":"VT"},{"name":"Virgin Islands","value":"VI"},{"name":"Virginia","value":"VA"},{"name":"Washington","value":"WA"},{"name":"West Virginia","value":"WV"},{"name":"Wisconsin","value":"WI"},{"name":"Wyoming","value":"WY"}];
+
 		// Use real data if the service provides it - otherwise show sample data to avoid data entry
 		if(dataCenterInv) {
 			vm.model = Restangular.stripRestangular(dataCenterInv)
@@ -56,7 +58,7 @@
 					{
 						className: 'col-sm-12',
 						template: '<div class="box-header section-start section-divider"><h3 class="box-title">Basic Information</h3><hr /></div>'
-					},
+					},				
 					{
 						className: 'col-sm-4',
 						type: 'input',
@@ -86,20 +88,29 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'recordStatus',
 						templateOptions: {
 							label: 'Record Status',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Existing', value: 'existing'},
+								{name: 'Not Existing', value: 'not existing'}
+							]
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'recordValidity',
 						templateOptions: {
 							label: 'Record Validity',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Added Facility', value: 'added facility'},
+								{name: 'Valid Facility', value: 'valid facility'},
+								{name: 'Invalid Facility', value: 'invalid vacility'}
+							]
 						}
 					},
 					{
@@ -113,11 +124,20 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'component',
 						templateOptions: {
 							label: 'Component',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'CFO', value: 'cfo'},
+								{name: 'CFO/CPO', value: 'cfo cpo'},
+								{name: 'CPO', value: 'cpo'},
+								{name: 'FAS', value: 'fas'},
+								{name: 'OCIO', value: 'ocio'},
+								{name: 'OGP', value: 'ogp'},
+								{name: 'PBS', value: 'pbs'}
+							]
 						}
 					},
 					{
@@ -153,11 +173,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'coreClassification',
 						templateOptions: {
 							label: 'Core Classification',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Core', value: 'core'},
+								{name: 'Non-Core', value: 'non-core'}
+							]							
 						}
 					},
 					{
@@ -184,11 +208,12 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'state',
 						templateOptions: {
 							label: 'State',
-							className: 'form-control'
+							className: 'form-control',
+							options : vm.statesList 
 						}
 					},
 					{
@@ -211,11 +236,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'country',
 						templateOptions: {
 							label: 'Country',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'United States', value: 'united states'},
+								{name: 'International', value: 'international'}				
+							]							
 						}
 					},
 					{
@@ -224,20 +253,29 @@
 					},					
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'ownershipType',
 						templateOptions: {
 							label: 'Ownership Type',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Agency Owned', value: 'agency owned'},
+								{name: 'Colocation', value: 'colocation'},
+								{name: 'Outsourcing', value: 'outsourcing'}																		
+							]							
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'colocationProvider',
 						templateOptions: {
 							label: 'Colocation Provider',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}																		
+							]								
 						}
 					},
 					{
@@ -260,11 +298,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'providingServices',
 						templateOptions: {
 							label: 'Providing Services',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}
+							]
 						}
 					},
 					{
@@ -291,11 +333,18 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'dataCenterTier',
 						templateOptions: {
 							label: 'Data Center Tier',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Tier I', value: 'tier 1'},
+								{name: 'Tier II', value: 'tier 2'},
+								{name: 'Tier III', value: 'tier 3'},
+								{name: 'Tier IV', value: 'tier 4'},
+								{name: 'Server Room/Closet', value: 'server room closet'}																								
+							]							
 						}
 					},
 					{
@@ -345,20 +394,28 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'electricityIncludedInCost',
 						templateOptions: {
 							label: 'Electricity Included in Cost',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}
+							]							
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'electricityIsMetered',
 						templateOptions: {
 							label: 'Electricity is Metered',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}
+							]							
 						}
 					},
 					{
@@ -520,11 +577,19 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'closingStage',
 						templateOptions: {
 							label: 'Closing Stage',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Application Mapping', value: 'application mapping'},
+								{name: 'Closed', value: 'closed'},
+								{name: 'Considering', value: 'considering'},
+								{name: 'Equipment Removal', value: 'equipment removal'},
+								{name: 'Migration Planning', value: 'migration planning'},
+								{name: 'Not Closing', value: 'not closing'}							
+							]
 						}
 					},
 					{
@@ -547,11 +612,17 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'realPropertyDisposition',
 						templateOptions: {
 							label: 'Real Property Disposition',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Dispose at Close', value: 'dispose at close'},
+								{name: 'Dispose at Later Date', value: 'dispose at later date'},
+								{name: 'Repurpose', value: 'repurpose'},		
+								{name: 'Blank', value: 'blank'}											
+							]							
 						}
 					},
 					{
