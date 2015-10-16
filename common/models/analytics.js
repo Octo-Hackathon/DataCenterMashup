@@ -279,9 +279,9 @@ module.exports = function(Analytics) {
 	};
 
 	/*
-		Implementation of getQuarterlyCost REST API endpoint.
+		Implementation of getTotalCost REST API endpoint.
 	*/
-	Analytics.getTotalCost = function(quarterYear, dataCenterId, cb) {
+	Analytics.getQuarterlyTotalCost = function(quarterYear, dataCenterId, cb) {
 		var quarterObj;
 		if(quarterYear){
 			quarterObj = parseQuarterInput(quarterYear);
@@ -323,6 +323,45 @@ module.exports = function(Analytics) {
 		});
 	};
 
+	/*
+		Implementation of getAllDataCenterCostInfo REST API endpoint.
+	*/
+	Analytics.getAllDataCenterCostAndElectricityUsageInfo = function(quarterYear, cb) {
+		var quarterObj;
+		if(quarterYear){
+			quarterObj = parseQuarterInput(quarterYear);
+			if(!quarterObj.isValid){
+				cb(new Error("Invalid input for: quarterYear") , null);			
+			}		
+		}
+		var connection = getConnection();
+		connection.connect();
+		var selectClause = "select inv.dataCenterId dataCenterId, inv.city city, inv.state state, inf.averageElectricityUsage averageElectricityUsage, (ifnull(inf.fteCost,0) + ( ifnull(inf.averageElectricityUsage,0) * ifnull(inf.costperkWh,0))) totalCost ";
+		var fromClause = " from  datacenterinformation inf, datacenterinventory inv  ";
+		var whereClause = " where inf.dataCenterInventoryId = inv.id and year = "+ quarterObj.year 
+							+ " and quarter = "+ quarterObj.quarter;
+
+		var query = selectClause + fromClause + whereClause;
+		console.log("Query ::: "+ query);
+		connection.query(query, function(err, rows, fields) {
+			connection.end();
+		  	if(err){
+				cb(err, null);
+			}
+			var results = [];
+			for(var i in rows){
+				var result = {};
+				result.dataCenterId = rows[i].dataCenterId;
+				result.totalCost = rows[i].totalCost;
+				result.location = rows[i].city + "," + rows[i].state;
+				result.averageElectricityUsage = rows[i].averageElectricityUsage;
+				results.push(result);
+			}
+			cb(null, results);	 
+		  	
+		});
+	};
+
 	//REST API Endpoint Configuration
  	Analytics.remoteMethod(
 	'getQuarterlyDifferences',
@@ -359,13 +398,23 @@ module.exports = function(Analytics) {
 	);
 
 	Analytics.remoteMethod(
-	'getTotalCost',
+	'getQuarterlyTotalCost',
 		{
 		  description: 'Fetches total cost for the last 4 quarters from the given quarter year',
 		  accepts: [{arg: 'quarterYear', type: 'string', required: true},
                 {arg: 'dataCenterId', type: 'number', required: false}],
 		  returns: {arg: 'result', type: 'object'},
 		  http: {path: '/getTotalCost', verb: 'get'}
+		}
+	);
+
+	Analytics.remoteMethod(
+	'getAllDataCenterCostAndElectricityUsageInfo',
+		{
+		  description: 'Fetches total cost and electricity for each data center for the given quarter',
+		  accepts: [{arg: 'quarterYear', type: 'string', required: true}],
+		  returns: {arg: 'result', type: 'array'},
+		  http: {path: '/getAllDataCenterCostAndElectricityUsageInfo', verb: 'get'}
 		}
 	);
 };
