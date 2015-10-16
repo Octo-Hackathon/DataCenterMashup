@@ -13,6 +13,7 @@ var dataSet = [];
 console.log("::::::::::Migration started:::::::::::::");
 csv.fromStream(stream, {headers: [  
 				'coreClassification',
+				'component',
 				'recordValidity',
 				'tcoClosingStage',
 				'realPropertyDisposition',
@@ -59,7 +60,8 @@ csv.fromStream(stream, {headers: [
 				'comments',
 				'quarter',
 				'year',
-				'agencyDataCenterId'
+				'agencyDataCenterId',
+				'createdBy'
               ]})
   .on("data", function(data){
       dataSet.push(data);
