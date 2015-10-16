@@ -316,8 +316,8 @@ module.exports = function(Analytics) {
 				quarters.push(quartersRef[rows[i].quarter] + " "+ rows[i].year);
 				totalCosts.push(rows[i].totalCost);
 			}
-			result.quarters = quarters;
-			result.totalCosts = totalCosts;
+			result.quarters = quarters.reverse();
+			result.totalCosts = totalCosts.reverse();
 			cb(null, result);	 
 		  	
 		});
