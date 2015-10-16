@@ -156,9 +156,6 @@
       "type": "number",
       "required": true
     },
-    "component": {
-      "type": "string"
-    },
     "createdBy": {
       "type": "string"
     },
