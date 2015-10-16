@@ -7,7 +7,7 @@
           username: null,
           name: null,
           dataCenterId: null,
-          role: null
+          role: 'admin'
         }
       };
 
