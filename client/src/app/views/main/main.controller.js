@@ -5,8 +5,9 @@
 			$scope.$state = $state;
 		})
 
-    .controller('MainController', /** @ngInject */ function ($scope, $filter, quarterChartData, serverChartData, storageChartData, allQuarterChartData, fteChartData, electricityChartData) {
+    .controller('MainController', /** @ngInject */ function ($scope, user, $filter, quarterChartData, serverChartData, storageChartData, allQuarterChartData, fteChartData, electricityChartData) {
 		  
+	$scope.user = user.getUser();
 			/* Main Cost Chart */
 
 		  $scope.mainChart = {};
