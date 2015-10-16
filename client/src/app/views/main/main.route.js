@@ -16,6 +16,9 @@
         }
       },
       resolve: {
+        allInfoData: function($stateParams, Restangular) {
+          return Restangular.one('dataCenterInformations').get();
+        },
         quarterChartData: function($stateParams, Restangular) {
           return Restangular.one('analytics').one('getTotalCost').get({'quarterYear':'3:2015'});
         },

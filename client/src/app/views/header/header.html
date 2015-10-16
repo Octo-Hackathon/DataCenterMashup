@@ -43,15 +43,17 @@
             <li class="header">Main Menu</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a ui-sref="app.main"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Reports</span></a></li>
-            <li><a ui-sref="app.datacenters.list"><i class="fa fa-server"></i> <span>Data Centers</span></a></li>
-            <li><a ui-sref="app.calculator"><i class="fa fa-calculator"></i> <span>CBA Tool</span></a></li>            
-            <li><a href="#"><i class="fa fa-th-list"></i> <span>Staff Entries</span></a></li>
+            <li ng-if="user.role=='admin' || user.role=='report'"><a href="#"><i class="fa fa-bar-chart"></i> <span>Reports</span></a></li>
+            <li ng-if="user.role=='admin'"><a ui-sref="app.datacenters.list"><i class="fa fa-server"></i> <span>Data Centers</span></a></li>
+            <li ng-if="user.role=='admin'"><a ui-sref="app.calculator"><i class="fa fa-calculator"></i> <span>CBA Tool</span></a></li>            
+            <li ng-if="user.role=='staff'"><a href="#"><i class="fa fa-th-list"></i> <span>Staff Entries</span></a></li>
             <li class="header">Quick Links</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="#"><i class="fa fa-sliders"></i> <span>Create Report</span></a></li>
-            <li><a ui-sref="app.datacenters.datacenter.create"><i class="fa fa-plus-square-o"></i> <span>Add Data Center</span></a></li>
-            <li><a href="#"><i class="fa fa-edit"></i> <span>New Staff Entry</span></a></li>
+            <li ng-if="user.role=='admin' || user.role=='report'"><a href="#"><i class="fa fa-sliders"></i> <span>Create Report</span></a></li>
+            <li ng-if="user.role=='admin'"><a ui-sref="app.datacenters.datacenter.create"><i class="fa fa-plus-square-o"></i> <span>Add Data Center</span></a></li>
+            
+            <li ng-if="user.role=='staff'"><a href="#"><i class="fa fa-edit"></i> <span>New Staff Entry</span></a></li>
+          
           </ul><!-- /.sidebar-menu -->
 
         </section>
