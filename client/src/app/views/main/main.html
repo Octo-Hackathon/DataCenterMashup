@@ -3,8 +3,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Sue Jane's Dashboard
-            <small>GSA IT Admin</small>
+            {{user.name}}'s Dashboard
+            <small></small>
           </h1>
           <ol class="breadcrumb">
             <li><a ui-sref="app.main"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -15,7 +15,7 @@
         <section class="content">
             <div class="row">
               <div class="col-md-12">
-                <div class="box">
+                <div class="box box-success">
                   <div class="box-header with-border">
                     <h3 class="box-title">Total Cost for All Data Centers</h3>
                     <div class="box-tools pull-right">
@@ -25,15 +25,22 @@
                   <div class="box-body">
                       <div class="chart">
                         <!-- Chart Canvas -->
-                        <canvas id="line" class="chart chart-line" chart-series="series" chart-options="mainChart.options" chart-data="mainChart.data" chart-labels="mainChart.labels" chart-colours="mainChart.colors" height="60"></canvas>
+                        <canvas id="line" class="chart chart-line" chart-series="series" chart-options="mainChart.options" chart-data="mainChart.data" chart-labels="mainChart.labels" chart-colours="mainChart.colors" height="100"></canvas>
                       </div><!-- /.chart-responsive -->
                   </div><!-- ./box-body -->
                   <div class="box-footer">
                     <div class="row">
 
                       <div class="col-sm-6 col-xs-12 border-right">
-
-                          <h4 class="text-center">Cost Efficiency</h4>
+                        <div class="info-box bg-green">
+                          <span class="info-box-icon"><i class="ion ion-social-usd"></i></span>
+                          <div class="info-box-content">
+                            <span class="info-box-text"><h4>Cost Per Server</h4></span>
+                            <div class="progress">
+                              <div class="progress-bar" style="width: 0%"></div>
+                            </div>                            
+                          </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->     
                           <div class="table-responsive">
                             <table st-table="allQuarterlyCostData" class="table table-striped">
                               <thead>
@@ -55,8 +62,15 @@
 
                       </div><!-- /.col -->
                       <div class="col-sm-6 col-xs-12 border-right">
-
-                          <h4 class="text-center">Energy Efficiency</h4>
+                        <div class="info-box bg-yellow">
+                          <span class="info-box-icon"><i class="ion ion-flash"></i></span>
+                          <div class="info-box-content">
+                            <span class="info-box-text"><h4>Efficiency Per Server</h4></span>
+                            <div class="progress">
+                              <div class="progress-bar" style="width: 0%"></div>
+                            </div>                            
+                          </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
                           <div class="table-responsive">
                             <table st-table="allQuarterlyElectricData" class="table table-striped">
                               <thead>
@@ -86,7 +100,7 @@
 
             <div class="row">
               <div class="col-md-6">
-                <div class="box">
+                <div class="box box-danger">
                   <div class="box-header with-border">
                     <h3 class="box-title">Storage Used</h3>
                     <div class="box-tools pull-right">
@@ -102,11 +116,28 @@
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->
-
+                  <div class="box-footer">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="description-block border-right">
+                          <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 4 TB</span>
+                          <h5 class="description-header">681 TB</h5>
+                          <span class="description-text">AVAILABLE STORAGE</span>
+                        </div><!-- /.description-block -->
+                      </div><!-- /.col -->                    
+                      <div class="col-sm-6">
+                        <div class="description-block">
+                          <span class="description-percentage"><i class="fa fa-caret-left"></i> 0 TB</span>
+                          <h5 class="description-header">2034 TB</h5>
+                          <span class="description-text">TOTAL STORAGE</span>
+                        </div><!-- /.description-block -->
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  </div><!-- /.box-footer -->
                 </div><!-- /.box -->
               </div><!-- /.col -->
               <div class="col-md-6">
-                <div class="box">
+                <div class="box box-info">
                   <div class="box-header with-border">
                     <h3 class="box-title">Servers By Type</h3>
                     <div class="box-tools pull-right">
@@ -122,14 +153,25 @@
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->
+                  <div class="box-footer">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="description-block">
+                          <span class="description-percentage text-red"><i class="fa fa-caret-up"></i> 1</span>
+                          <h5 class="description-header">750</h5>
+                          <span class="description-text">TOTAL SERVERS</span>
+                        </div><!-- /.description-block -->
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  </div><!-- /.box-footer -->                  
                 </div><!-- /.box -->
               </div><!-- /.col -->
 
             </div><!-- /.row -->
 
             <div class="row">
-              <div class="col-md-4">
-                <div class="box">
+              <div class="col-md-6">
+                <div class="box box-warning">
                   <div class="box-header with-border">
                     <h3 class="box-title">Total Electricity Used</h3>
                     <div class="box-tools pull-right">
@@ -145,11 +187,21 @@
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->
-
+                  <div class="box-footer">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="description-block">
+                          <span class="description-percentage text-green"><i class="fa fa-caret-down"></i> 300</span>
+                          <h5 class="description-header">17,000 kWh</h5>
+                          <span class="description-text">ELECTRICTY USED</span>
+                        </div><!-- /.description-block -->
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  </div><!-- /.box-footer -->   
                 </div><!-- /.box -->
               </div><!-- /.col -->
-              <div class="col-md-4">
-                <div class="box">
+              <div class="col-md-6">
+                <div class="box box-success">
                   <div class="box-header with-border">
                     <h3 class="box-title">Total FTE Cost</h3>
                     <div class="box-tools pull-right">
@@ -165,10 +217,25 @@
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->
+                  <div class="box-footer">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="description-block">
+                          <span class="description-percentage text-green"><i class="fa fa-caret-down"></i> $17,260</span>
+                          <h5 class="description-header">$2,927,598</h5>
+                          <span class="description-text">TOTAL FTE COST</span>
+                        </div><!-- /.description-block -->
+                      </div><!-- /.col -->
+                    </div><!-- /.row -->
+                  </div><!-- /.box-footer -->                  
                 </div><!-- /.box -->
               </div><!-- /.col -->
-              <div class="col-md-4">
-                <div class="box">
+
+            </div><!-- /.row -->
+
+            <div class="row"><!-- /row -->
+              <div class="col-md-12">
+                <div class="box box-primary">
                   <div class="box-header with-border">
                     <h3 class="box-title">Recent Activity</h3>
                     <div class="box-tools pull-right">
@@ -201,8 +268,8 @@
                   </div><!-- ./box-body -->
                 </div><!-- /.box -->
               </div><!-- /.col -->
-
             </div><!-- /.row -->
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 

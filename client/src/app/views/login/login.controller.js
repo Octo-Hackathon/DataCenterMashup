@@ -1,37 +1,25 @@
 (function() {
 
   angular.module('octoDatacenter')
-    .controller('LoginController', /** @ngInject */ function ($scope, $modal, auth, $state, toastr) {
+    .controller('LoginController', /** @ngInject */ function ($scope, user, $state, toastr) {
 
-      angular.element('#emailInput').focus();
+      $scope.email = '';
 
-      $scope.openSignInHelpModal = function () {
-        $modal.open({
-          animation: true,
-          templateUrl: 'sign-in-help.html',
-          controller: 'BasicModalCtrl'
-        });
-      };
+      $scope.login = function(test) {
 
-      $scope.openTermsModal = function () {
-        $modal.open({
-          animation: true,
-          templateUrl: 'terms-and-conditions.html',
-          controller: 'BasicModalCtrl'
-        });
-      };
-
-      $scope.login = function(email, password) {
-        auth.login(email, password).then(function() {
+        if($scope.email == "Sue.Jane") {
+          toastr.success('Logged in.');
+          user.setUser({username:'Sue.Jane', name: 'Sue Jane', dataCenterId: 1, role: 'staff'});
           $state.go('app.main');
-        }, function() {
-          toastr.error('Login failed');
-        });
-      };
-    })
-    .controller('BasicModalCtrl', function ($scope, $modalInstance) {
-      $scope.close = function () {
-        $modalInstance.dismiss('cancel');
+        }
+        else if($scope.email == "Vernon.Samuel") {
+          toastr.success('Logged in.');
+          user.setUser({username:'Vernon.Samuel', name: 'Vernon Samuel', dataCenterId: null, role: 'admin'});
+          $state.go('app.main');
+        }
+        else {
+          toastr.error('Invalid Login.');
+        }
       };
     });
 

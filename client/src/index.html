@@ -1,9 +1,9 @@
 <!doctype html>
-<html ng-app="octoDatacenter">
+<html ng-app="octoDatacenter" >
   <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Octo Datacenter Manager</title>
+    <title>Data Center Manager</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -20,10 +20,10 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body class="hold-transition skin-red sidebar-mini">
+  <body class="hold-transition skin-red sidebar-mini" ng-class="{'login-page': $state.includes('app.login')}" ng-controller="BodyController">
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
-    <div class="wrapper">
+    <div class="wrapper" ng-class="{'login-page': $state.includes('app.login')}">
         <div id="header-view" ui-view="header"></div>
         <div id="content" ui-view tabindex="-1"></div>
         <div ui-view="footer"></div>
