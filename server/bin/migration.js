@@ -59,7 +59,8 @@ csv.fromStream(stream, {headers: [
 				'comments',
 				'quarter',
 				'year',
-				'agencyDataCenterId'
+				'agencyDataCenterId',
+				'createdBy'
               ]})
   .on("data", function(data){
       dataSet.push(data);
