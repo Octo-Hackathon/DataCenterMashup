@@ -59,6 +59,31 @@ input[type=number] {
   min-height:850px;
 }
 
+[st-sort], [ng-click] {
+    cursor:pointer;
+}
+
+
+[st-sort].st-sort-ascent:after {
+    content: "\f0de";
+    float: right;
+    font-family: fontawesome;
+}
+
+[st-sort].st-sort-descent:after {
+    content: "\f0dd";
+    float: right;
+    font-family: fontawesome;
+}
+
+[st-sort]:after {
+    content: "\f0dc";
+    float: right;
+    font-family: fontawesome;
+    color: rgba(50,50,50,.5);
+    margin-left:3px;
+}
+
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your less files automatically

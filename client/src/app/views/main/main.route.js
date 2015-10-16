@@ -24,7 +24,10 @@
         },
         storageChartData: function($stateParams, Restangular) {
           return Restangular.one('analytics').one('getQuarterlyStorageCounts').get();
-        }
+        },
+        allQuarterChartData: function($stateParams, Restangular) {
+          return Restangular.one('analytics').one('getAllDataCenterCostAndElectricityUsageInfo').get({'quarterYear':'3:2015'});
+        }      
         
       }
     });

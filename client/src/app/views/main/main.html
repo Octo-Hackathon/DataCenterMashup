@@ -36,42 +36,22 @@
 
                           <h4 class="text-center">Most Cost Effective</h4>
                           <div class="table-responsive">
-                            <table class="table">
+                            <table st-table="allQuarterlyCostData" class="table table-striped">
                               <thead>
-                                <tr>
-                                  <th>Data Center</th>
-                                  <th>Location</th>
-                                  <th class="text-right">Total Cost</th>
-                                </tr>
+                              <tr>
+                                <th>Data Center</th>
+                                <th>Location</th>
+                                <th st-sort="totalCost" st-skip-natural="true" st-sort-default="true" class="text-right">Cost Per Server</th>
+                              </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>New York City</td>
-                                  <td class="text-right">$444,400</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>New York City</td>
-                                  <td class="text-right">$490,000</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>New York City</td>
-                                  <td class="text-right">$510,000</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>New York City</td>
-                                  <td class="text-right">$565,000</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>New York City</td>
-                                  <td class="text-right">$600,000</td>
-                                </tr>
+                              <tr ng-repeat="row in allQuarterlyCostData | limitTo:5">
+                                <td><a>{{row.dataCenterId}}</a></td>
+                                <td>{{row.location}}</td>
+                                <td class="text-right">{{row.totalCost | currency}}</td>
+                              </tr>
                               </tbody>
-                            </table>
+                            </table>                          
                           </div><!-- /.table-responsive -->
 
                       </div><!-- /.col -->
@@ -79,42 +59,22 @@
 
                           <h4 class="text-center">Most Energy Efficient</h4>
                           <div class="table-responsive">
-                            <table class="table">
+                            <table st-table="allQuarterlyElectricData" class="table table-striped">
                               <thead>
-                                <tr>
-                                  <th>Data Center</th>
-                                  <th>Location</th>
-                                  <th class="text-right">Total kWh</th>
-                                </tr>
+                              <tr>
+                                <th>Data Center</th>
+                                <th>Location</th>
+                                <th st-sort="averageElectricityUsage" st-skip-natural="true" st-sort-default="reverse" class="text-right">Efficiency Per Server</th>
+                              </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>Idaho</td>
-                                  <td class="text-right">1200kWh</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>Idaho</td>
-                                  <td class="text-right">1225kWh</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>Idaho</td>
-                                  <td class="text-right">1285kWh</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>Idaho</td>
-                                  <td class="text-right">1300kWh</td>
-                                </tr>
-                                <tr>
-                                  <td><a href="#">ID-3234233-DC</a></td>
-                                  <td>Idaho</td>
-                                  <td class="text-right">1310kWh</td>
-                                </tr>
+                              <tr ng-repeat="row in allQuarterlyElectricData | limitTo:5">
+                                <td><a>{{row.dataCenterId}}</a></td>
+                                <td>{{row.location}}</td>
+                                <td class="text-right">{{row.averageElectricityUsage | number}} kWh</td>
+                              </tr>
                               </tbody>
-                            </table>
+                            </table> 
                           </div><!-- /.table-responsive -->
 
                       </div><!-- /.col -->

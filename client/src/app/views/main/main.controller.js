@@ -1,7 +1,7 @@
 (function() {
 
   angular.module('octoDatacenter')
-    .controller('MainController', /** @ngInject */ function ($scope, $filter, quarterChartData, serverChartData, storageChartData) {
+    .controller('MainController', /** @ngInject */ function ($scope, $filter, quarterChartData, serverChartData, storageChartData, allQuarterChartData) {
 		  $scope.mainChart = {};
 		  $scope.mainChart.labels = quarterChartData.result.quarters;
 		  $scope.mainChart.data = [quarterChartData.result.totalCosts];
@@ -31,6 +31,7 @@
 
 			$scope.serverChart.colors = ['#f56954','#00a65a','#f39c12','#00c0ef'];
 
+
 		  $scope.storageChart = {};
 
 		  $scope.storageChart.labels = storageChartData.results.quarters;
@@ -39,6 +40,10 @@
 		  $scope.storageChart.series = storageChartData.results.labels;
 
 			$scope.storageChart.colors = ['#f56954','#00a65a'];
+
+
+			$scope.allQuarterlyCostData = allQuarterChartData.result;
+			$scope.allQuarterlyElectricData = allQuarterChartData.result;
 
     });
 
