@@ -8,6 +8,7 @@ var dataSource = app.dataSources.mysql;
 var stream = fs.createReadStream("FDCCI-GAO-CFO-CPO-Q1-2014.csv");
 
 var DataCenterInformation = app.models.DataCenterInformation;
+var DataCenterInventory = app.models.DataCenterInventory;
 var dataSet = [];
 console.log("::::::::::Migration started:::::::::::::");
 csv.fromStream(stream, {headers: [  
@@ -58,7 +59,7 @@ csv.fromStream(stream, {headers: [
 				'comments',
 				'quarter',
 				'year',
-				'dataCenterInventoryId'
+				'agencyDataCenterId'
               ]})
   .on("data", function(data){
       dataSet.push(data);
@@ -73,16 +74,25 @@ csv.fromStream(stream, {headers: [
         count = dataSet.length;
       }
 
-      dataSet.forEach(function(data) {         
-        DataCenterInformation.create(data, function(err, record) {
-          count--;
-          if (count === 0) {
-            dataSource.disconnect();
-            console.log(":::::::::::::Migration is completed:::::::::");
-          }
-          if (err) {
-            return console.log(err);
-          }
-        });
+      dataSet.forEach(function(data) { 
+
+      	DataCenterInventory.findOne({ where: {agencyDataCenterId:data.agencyDataCenterId} },function(err, record){
+      		 if (err) {
+            	return console.log(err);
+          	}
+          	data.dataCenterInventoryId = record.id;
+	        DataCenterInformation.create(data, function(err, record) {
+		        count--;
+		        if (count === 0) {
+		          dataSource.disconnect();
+		          console.log(":::::::::::::Migration is completed:::::::::");
+		        }
+		        if (err) {
+		        return console.log(err);
+		        }
+	        });
+
+      	});
+
       });
    });
