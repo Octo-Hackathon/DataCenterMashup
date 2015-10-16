@@ -236,11 +236,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'country',
 						templateOptions: {
 							label: 'Country',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'United States', value: 'united states'},
+								{name: 'International', value: 'international'}				
+							]							
 						}
 					},
 					{
@@ -249,20 +253,29 @@
 					},					
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'ownershipType',
 						templateOptions: {
 							label: 'Ownership Type',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Agency Owned', value: 'agency owned'},
+								{name: 'Colocation', value: 'colocation'},
+								{name: 'Outsourcing', value: 'outsourcing'}																		
+							]							
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'colocationProvider',
 						templateOptions: {
 							label: 'Colocation Provider',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}																		
+							]								
 						}
 					},
 					{
@@ -285,11 +298,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'providingServices',
 						templateOptions: {
 							label: 'Providing Services',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}
+							]
 						}
 					},
 					{
@@ -316,11 +333,18 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'dataCenterTier',
 						templateOptions: {
 							label: 'Data Center Tier',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Tier I', value: 'tier 1'},
+								{name: 'Tier II', value: 'tier 2'},
+								{name: 'Tier III', value: 'tier 3'},
+								{name: 'Tier IV', value: 'tier 4'},
+								{name: 'Server Room/Closet', value: 'server room closet'}																								
+							]							
 						}
 					},
 					{
@@ -370,20 +394,28 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'electricityIncludedInCost',
 						templateOptions: {
 							label: 'Electricity Included in Cost',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}
+							]							
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'electricityIsMetered',
 						templateOptions: {
 							label: 'Electricity is Metered',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}
+							]							
 						}
 					},
 					{
@@ -545,11 +577,19 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'closingStage',
 						templateOptions: {
 							label: 'Closing Stage',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Application Mapping', value: 'application mapping'},
+								{name: 'Closed', value: 'closed'},
+								{name: 'Considering', value: 'considering'},
+								{name: 'Equipment Removal', value: 'equipment removal'},
+								{name: 'Migration Planning', value: 'migration planning'},
+								{name: 'Not Closing', value: 'not closing'}							
+							]
 						}
 					},
 					{
@@ -572,11 +612,17 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'realPropertyDisposition',
 						templateOptions: {
 							label: 'Real Property Disposition',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Dispose at Close', value: 'dispose at close'},
+								{name: 'Dispose at Later Date', value: 'dispose at later date'},
+								{name: 'Repurpose', value: 'repurpose'},		
+								{name: 'Blank', value: 'blank'}											
+							]							
 						}
 					},
 					{
