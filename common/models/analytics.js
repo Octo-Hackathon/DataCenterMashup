@@ -354,7 +354,7 @@ module.exports = function(Analytics) {
 				result.dataCenterId = rows[i].dataCenterId;
 				result.dataCenterName = rows[i].dataCenterName;
 				result.totalCost = rows[i].totalCost / rows[i].totalServers;
-				result.location = rows[i].city + "," + rows[i].state;
+				result.location = rows[i].city + ", " + rows[i].state;
 				result.averageElectricityUsage = rows[i].averageElectricityUsage / rows[i].totalServers;
 				results.push(result);
 			}
