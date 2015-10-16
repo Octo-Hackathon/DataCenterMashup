@@ -2,6 +2,13 @@
 
 ## Install/Update/Run
 
+Install Node JS
+
+Run globally: 
+npm install -g bower gulp
+
+Change to client folder and run:
+
 npm install
 bower install
 gulp serve
