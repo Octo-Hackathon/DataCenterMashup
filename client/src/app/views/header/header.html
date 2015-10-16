@@ -45,8 +45,8 @@
             <li class="active"><a ui-sref="app.main"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li  ng-if="user.role=='admin' || user.role=='report'"><a><i class="fa fa-bar-chart"></i> <span>Reports</span></a>
               <ul>
-                <li><a href="/reports?rptName=omb_inventory&format=xlsx" target="_blank"><i class="fa fa-caret-right"></i> OMB Inventory Report</a></li>
-                <li><a href="/reports?rptName=gao_inventory&format=xlsx" target="_blank"><i class="fa fa-caret-right"></i> GAO Inventory Report</a></li>                
+                <li><a href="http://localhost:3000/reports?rptName=omb_inventory&format=xlsx" target="_blank"><i class="fa fa-caret-right"></i> OMB Inventory Report</a></li>
+                <li><a href="http://localhost:3000/reports?rptName=gao_inventory&format=xlsx" target="_blank"><i class="fa fa-caret-right"></i> GAO Inventory Report</a></li>                
               </ul>
             </li>          
             <li ng-if="user.role=='admin'"><a ui-sref="app.datacenters.list"><i class="fa fa-server"></i> <span>Data Centers</span></a></li>
