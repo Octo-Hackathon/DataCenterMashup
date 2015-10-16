@@ -1,6 +1,10 @@
 (function() {
 
   angular.module('octoDatacenter')
+    .controller('BodyController', /** @ngInject */ function ($scope, $state) {
+			$scope.$state = $state;
+		})
+
     .controller('MainController', /** @ngInject */ function ($scope, $filter, quarterChartData, serverChartData, storageChartData, allQuarterChartData, fteChartData, electricityChartData) {
 		  
 			/* Main Cost Chart */

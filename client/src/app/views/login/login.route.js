@@ -13,9 +13,10 @@
         '': {
           templateUrl: 'app/views/login/login.html',
           controller: 'LoginController'
-        }
+        },
+        'header@': '',
+        'footer@': ''
       }
-
     });
   }
 
