@@ -4,10 +4,12 @@
     .controller('BodyController', /** @ngInject */ function ($scope, $state) {
 			$scope.$state = $state;
 		})
-
-    .controller('MainController', /** @ngInject */ function ($scope, $filter, quarterChartData, serverChartData, storageChartData, allQuarterChartData, fteChartData, electricityChartData, allInfoData) {
+		.controller('MainController', /** @ngInject */ function ($scope, user, $filter, quarterChartData, serverChartData, storageChartData, allQuarterChartData, fteChartData, electricityChartData, allInfoData) {
 		  
 		  $scope.allInfoData = allInfoData;
+	  
+			$scope.user = user.getUser();
+
 			/* Main Cost Chart */
 
 		  $scope.mainChart = {};
