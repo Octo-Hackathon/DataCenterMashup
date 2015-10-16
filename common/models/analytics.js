@@ -206,22 +206,26 @@ module.exports = function(Analytics) {
 							"Unix Servers",
 							"Linux Servers",
 							"Other Servers"];
-			var countsArray = [];
-
 			result.quarters = quarters;
 			result.labels = labels;
-			result.counts = countsArray;
-
+			result.counts = [];
+			var windowsServers = [];
+			var unixServers = [];
+			var linuxServers = [];
+			var otherServers = [];
+			result.counts.push(windowsServers);
+			result.counts.push(unixServers);
+			result.counts.push(linuxServers);
+			result.counts.push(otherServers);
 			if(data && data.length >0){
 				for(var i in data){
 					var row = data[i];
 					var counts = [];
 					quarters.push(quartersRef[row.quarter] + " "+ row.year);
-					counts.push(row.totalWindowsServers);
-					counts.push(row.totalUnixServers);
-					counts.push(row.totalLinuxServers);
-					counts.push(row.otherServers);
-					countsArray.push(counts);
+					windowsServers.push(row.totalWindowsServers);
+					unixServers.push(row.totalUnixServers);
+					linuxServers.push(row.totalLinuxServers);
+					otherServers.push(row.otherServers);
 				}
 			}
 			result.quarters.reverse();  
@@ -249,20 +253,19 @@ module.exports = function(Analytics) {
 			var quarters = [];
 			var labels = [	"Used Storage",
 							"Total Storage"];
-			var countsArray = [];
-
+			var usedStorageCounts = [];
+			var totalStorageCounts = [];
 			result.quarters = quarters;
 			result.labels = labels;
-			result.counts = countsArray;
-
+			result.counts = [];
+			result.counts.push(usedStorageCounts);
+			result.counts.push(totalStorageCounts);
 			if(data && data.length >0){
 				for(var i in data){
 					var row = data[i];
-					var counts = [];
 					quarters.push(quartersRef[row.quarter] + " "+ row.year);
-					counts.push(row.usedStorage);
-					counts.push(row.totalStorage);
-					countsArray.push(counts);
+					usedStorageCounts.push(row.usedStorage);
+					totalStorageCounts.push(row.totalStorage);
 				}
 			}
 			result.quarters.reverse();  
@@ -284,7 +287,7 @@ module.exports = function(Analytics) {
 		}
 		var connection = getConnection();
 		connection.connect();
-		var selectClause = "select quarter quarter, year year, ( sum(fteCost) + ( sum(averageElectricityUsage) * ifnull(costperkWh,0) ) ) totalCost";
+		var selectClause = "select quarter quarter, year year, ( sum(ifnull(fteCost,0)) + ( sum(ifnull(averageElectricityUsage,0)) * ifnull(costperkWh,0) ) ) totalCost";
 		var fromClause = " from datacenterinformation ";
 		var groupByClause = " group by quarter, year ";	
 		var orderByClause = " order by year desc, quarter desc ";
