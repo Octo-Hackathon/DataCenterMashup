@@ -43,7 +43,12 @@
             <li class="header">Main Menu</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a ui-sref="app.main"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Reports</span></a></li>
+            <li><a><i class="fa fa-bar-chart"></i> <span>Reports</span></a>
+              <ul>
+                <li><a href="/reports?rptName=omb_inventory&format=xlsx" target="_blank"><i class="fa fa-caret-right"></i> OMB Inventory Report</a></li>
+                <li><a href="/reports?rptName=gao_inventory&format=xlsx" target="_blank"><i class="fa fa-caret-right"></i> GAO Inventory Report</a></li>                
+              </ul>
+            </li>
             <li><a ui-sref="app.datacenters.list"><i class="fa fa-server"></i> <span>Data Centers</span></a></li>
             <li><a ui-sref="app.calculator"><i class="fa fa-calculator"></i> <span>CBA Tool</span></a></li>            
             <li><a href="#"><i class="fa fa-th-list"></i> <span>Staff Entries</span></a></li>
