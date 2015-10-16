@@ -1,7 +1,7 @@
 (function() {
 
   angular.module('octoDatacenter')
-    .controller('LoginController', /** @ngInject */ function ($scope, $modal, auth, $state, toastr) {
+    .controller('LoginController', /** @ngInject */ function ($scope) {
 
       angular.element('#emailInput').focus();
 

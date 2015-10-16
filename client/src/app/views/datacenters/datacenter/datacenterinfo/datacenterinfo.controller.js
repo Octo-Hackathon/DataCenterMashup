@@ -69,6 +69,24 @@
 					{
 						className: 'col-sm-4',
 						type: 'select',
+						key: 'component',
+						templateOptions: {
+							label: 'Component',
+							className: 'form-control',
+							options: [
+								{name: 'CFO', value: 'cfo'},
+								{name: 'CFO/CPO', value: 'cfo cpo'},
+								{name: 'CPO', value: 'cpo'},
+								{name: 'FAS', value: 'fas'},
+								{name: 'OCIO', value: 'ocio'},
+								{name: 'OGP', value: 'ogp'},
+								{name: 'PBS', value: 'pbs'}
+							]
+						}
+					},					
+					{
+						className: 'col-sm-4',
+						type: 'select',
 						key: 'coreClassification',
 						templateOptions: {
 							label: 'Core Classification',
