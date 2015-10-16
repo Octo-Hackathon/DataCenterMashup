@@ -13,7 +13,6 @@ var dataSet = [];
 console.log("::::::::::Migration started:::::::::::::");
 csv.fromStream(stream, {headers: [  
 				'coreClassification',
-				'component',
 				'recordValidity',
 				'tcoClosingStage',
 				'realPropertyDisposition',
