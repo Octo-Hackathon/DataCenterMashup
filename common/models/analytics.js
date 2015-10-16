@@ -291,7 +291,7 @@ module.exports = function(Analytics) {
 		}
 		var connection = getConnection();
 		connection.connect();
-		var selectClause = "select quarter quarter, year year, ( sum(ifnull(fteCost,0)) + ( sum(ifnull(averageElectricityUsage,0)) * ifnull(costperkWh,0) ) ) totalCost";
+		var selectClause = "select quarter quarter, year year, ( sum(ifnull(fteCost,0)) + ( sum(ifnull(averageElectricityUsage,0)) * ifnull(costperkWh,0) ) ) totalCost ";
 		var fromClause = " from datacenterinformation ";
 		var groupByClause = " group by quarter, year ";	
 		var orderByClause = " order by year desc, quarter desc ";
@@ -336,7 +336,7 @@ module.exports = function(Analytics) {
 		}
 		var connection = getConnection();
 		connection.connect();
-		var selectClause = "select inv.dataCenterId dataCenterId, inv.city city, inv.state state, inf.averageElectricityUsage averageElectricityUsage, (ifnull(inf.fteCost,0) + ( ifnull(inf.averageElectricityUsage,0) * ifnull(inf.costperkWh,0))) totalCost ";
+		var selectClause = "select inv.dataCenterId dataCenterId, inv.dataCenterName, inv.city city, inv.state state, inf.averageElectricityUsage averageElectricityUsage, (ifnull(inf.fteCost,0) + ( ifnull(inf.averageElectricityUsage,0) * ifnull(inf.costperkWh,0))) totalCost, (ifnull(inf.totalWindowsServers,0)+ifnull(inf.totalUnixServers,0)+ifnull(inf.totalLinuxServers,0)+ifnull(inf.otherServers,0)) totalServers ";
 		var fromClause = " from  datacenterinformation inf, datacenterinventory inv  ";
 		var whereClause = " where inf.dataCenterInventoryId = inv.id and year = "+ quarterObj.year 
 							+ " and quarter = "+ quarterObj.quarter;
@@ -352,9 +352,10 @@ module.exports = function(Analytics) {
 			for(var i in rows){
 				var result = {};
 				result.dataCenterId = rows[i].dataCenterId;
-				result.totalCost = rows[i].totalCost;
+				result.dataCenterName = rows[i].dataCenterName;
+				result.totalCost = rows[i].totalCost / rows[i].totalServers;
 				result.location = rows[i].city + "," + rows[i].state;
-				result.averageElectricityUsage = rows[i].averageElectricityUsage;
+				result.averageElectricityUsage = rows[i].averageElectricityUsage / rows[i].totalServers;
 				results.push(result);
 			}
 			cb(null, results);	 
@@ -417,4 +418,27 @@ module.exports = function(Analytics) {
 		  http: {path: '/getAllDataCenterCostAndElectricityUsageInfo', verb: 'get'}
 		}
 	);
+
+	Analytics.remoteMethod(
+	'getQuarterlyElectricityUsage',
+		{
+		  description: ['Fetches quarterly total electricity usage for the given quarterYear.'],
+		  accepts: [{arg: 'quarterYear', type: 'string', required: false},
+                {arg: 'dataCenterId', type: 'number', required: false}],
+		  returns: {arg: 'results', type: 'object'},
+		  http: {path: '/getQuarterlyElectricityUsage', verb: 'get'}
+		}
+	);
+
+	Analytics.remoteMethod(
+	'getQuarterlyFTECost',
+		{
+		  description: ['Fetches quarterly total electricity usage for the given quarterYear.'],
+		  accepts: [{arg: 'quarterYear', type: 'string', required: false},
+                {arg: 'dataCenterId', type: 'number', required: false}],
+		  returns: {arg: 'results', type: 'object'},
+		  http: {path: '/getQuarterlyFTECost', verb: 'get'}
+		}
+	);	
+
 };
