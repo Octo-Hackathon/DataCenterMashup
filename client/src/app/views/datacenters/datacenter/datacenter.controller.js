@@ -56,7 +56,7 @@
 					{
 						className: 'col-sm-12',
 						template: '<div class="box-header section-start section-divider"><h3 class="box-title">Basic Information</h3><hr /></div>'
-					},
+					},				
 					{
 						className: 'col-sm-4',
 						type: 'input',
@@ -153,11 +153,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'coreClassification',
 						templateOptions: {
 							label: 'Core Classification',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Core', value: 'core'},
+								{name: 'Non-Core', value: 'non-core'}
+							]							
 						}
 					},
 					{
