@@ -35,7 +35,7 @@
                   <div class="box-body">
                       <div class="chart">
                         <!-- Chart Canvas -->
-                        <canvas id="line" class="chart chart-line" chart-options="options" chart-data="data" chart-labels="labels" chart-series="series" chart-colours="colors" chart-click="onClick" height="60"></canvas>
+                        <canvas id="line" class="chart chart-line" chart-series="series" chart-options="mainChart.options" chart-data="mainChart.data" chart-labels="mainChart.labels" chart-colours="mainChart.colors" height="60"></canvas>
                       </div><!-- /.chart-responsive -->
                   </div><!-- ./box-body -->
                   <div class="box-footer">
@@ -173,7 +173,7 @@
               <div class="col-md-6">
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Decommissioned Servers</h3>
+                    <h3 class="box-title">Servers By Type</h3>
                     <div class="box-tools pull-right">
                       <div class="btn-group">
                         <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
@@ -189,18 +189,10 @@
                   </div><!-- /.box-header -->
                   <div class="box-body">
                     <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
                         <div class="chart-responsive">
-                          <canvas id="pieChart2" height="200"></canvas>
+                          <canvas id="line" class="chart chart-line" chart-legend="true" chart-series="serverChart.series" chart-data="serverChart.data" chart-labels="serverChart.labels" chart-colours="serverChart.colors" height="200"></canvas>
                         </div><!-- ./chart-responsive -->
-                      </div><!-- /.col -->
-                      <div class="col-md-4">
-                        <ul class="chart-legend clearfix">
-                          <li><i class="fa fa-circle-o text-red"></i> Windows Servers</li>
-                          <li><i class="fa fa-circle-o text-green"></i> Linux Servers</li>
-                          <li><i class="fa fa-circle-o text-yellow"></i> Unix Servers</li>
-                          <li><i class="fa fa-circle-o text-aqua"></i> Other Servers</li>                          
-                        </ul>
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->
