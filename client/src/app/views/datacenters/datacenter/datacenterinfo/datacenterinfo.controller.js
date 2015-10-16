@@ -10,6 +10,7 @@
 		// function definition
 		function onSubmit() {
 			if(vm.model.id) {
+				vm.model.dataCenterInventoryId = dataCenter.id;
 				Restangular.one('DataCenterInformations', vm.model.id).customPUT(vm.model)
 				.then(function() {
 					$state.go('app.datacenters.datacenter.view', {'dataCenterId':dataCenter.id});
@@ -18,6 +19,7 @@
 				});
 			}
 			else {
+				vm.model.dataCenterInventoryId = dataCenter.id;
 				Restangular.one('DataCenterInformations').customPOST(vm.model)
 				.then(function() {
 					$state.go('app.datacenters.datacenter.view', {'dataCenterId':dataCenter.id});
@@ -35,7 +37,7 @@
 			vm.model = Restangular.stripRestangular(dataCenterInformation)
 		}
 		else {
-			vm.model = {"dataCenterInventoryId":dataCenter.id,"coreClassification":"1","recordValidity":"1","tcoClosingTargetDate":"1","tcoClosingStage":"1","realPropertyDisposition":"1","realPropertyDispositionDate":"1","totalFloorAreaEliminatedRepurposed":"1","totalDecommissionedPhysicalServers":"1","totalServersMovedToOtherDataCenter":"1","overallFTEReduction":"1","grossFloorArea":"1","floorAreaClassification":"1","annualCostPerSqFt":"1","tcoElectricityIncludedInCost":"1","tcoOwnershipType":"1","tcoProvidingServices":"11","percentageOfServicesPaidByOtherAgencies":"1","listOfAgenciesServiced":"1","providerName":"1","tcoDataCenterTier":"1","fte":"1","fteCost":"1","tcoElectricityIsMetered":"1","totalPowerCapacity":"1","averageElectricityUsage":"1","totalITPowerCapacity":"1","averageITElectricityUsage":"1","costperkWh":"1","wattsPerSqFt":"1","pue":"1","rackCount":"1","sqFtperRack":"1","totalIBMMainframes":"1","totalOtherMainframes":"1","totalWindowsServers":"11","totalUnixServers":"1","totalLinuxServers":"1","totalHPCClusterNodes":"1","otherServers":"1","totalVirtualHosts":"1","totalServerCount":"1","totalVirtualOS":"1","totalOSCount":"1","totalStorage":"1","usedStorage":"1","storageUtilization":"1","comments":"1","quarter":"1","year":"1"};
+			//vm.model = {"dataCenterInventoryId":dataCenter.id,"coreClassification":"1","recordValidity":"1","tcoClosingTargetDate":"1","tcoClosingStage":"1","realPropertyDisposition":"1","realPropertyDispositionDate":"1","totalFloorAreaEliminatedRepurposed":"1","totalDecommissionedPhysicalServers":"1","totalServersMovedToOtherDataCenter":"1","overallFTEReduction":"1","grossFloorArea":"1","floorAreaClassification":"1","annualCostPerSqFt":"1","tcoElectricityIncludedInCost":"1","tcoOwnershipType":"1","tcoProvidingServices":"11","percentageOfServicesPaidByOtherAgencies":"1","listOfAgenciesServiced":"1","providerName":"1","tcoDataCenterTier":"1","fte":"1","fteCost":"1","tcoElectricityIsMetered":"1","totalPowerCapacity":"1","averageElectricityUsage":"1","totalITPowerCapacity":"1","averageITElectricityUsage":"1","costperkWh":"1","wattsPerSqFt":"1","pue":"1","rackCount":"1","sqFtperRack":"1","totalIBMMainframes":"1","totalOtherMainframes":"1","totalWindowsServers":"11","totalUnixServers":"1","totalLinuxServers":"1","totalHPCClusterNodes":"1","otherServers":"1","totalVirtualHosts":"1","totalServerCount":"1","totalVirtualOS":"1","totalOSCount":"1","totalStorage":"1","usedStorage":"1","storageUtilization":"1","comments":"1","quarter":"1","year":"1"};
 		}
 
 
@@ -57,6 +59,7 @@
 						className: 'col-sm-12',
 						template: '<div class="box-header section-start section-divider"><h3 class="box-title">Basic Information</h3><hr /></div>'
 					},
+					/*
 					{
 						className: 'col-sm-4',
 						type: 'input',
@@ -65,25 +68,25 @@
 							label: 'Data Center ID',
 							className: 'form-control'
 						}
+					},*/
+					{
+						className: 'col-sm-4',
+						type: 'input',
+						key: 'quarter',
+						templateOptions: {
+							label: 'Quarter',
+							className: 'form-control'
+						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'select',
-						key: 'component',
+						type: 'input',
+						key: 'year',
 						templateOptions: {
-							label: 'Component',
-							className: 'form-control',
-							options: [
-								{name: 'CFO', value: 'cfo'},
-								{name: 'CFO/CPO', value: 'cfo cpo'},
-								{name: 'CPO', value: 'cpo'},
-								{name: 'FAS', value: 'fas'},
-								{name: 'OCIO', value: 'ocio'},
-								{name: 'OGP', value: 'ogp'},
-								{name: 'PBS', value: 'pbs'}
-							]
+							label: 'Year',
+							className: 'form-control'
 						}
-					},					
+					},				
 					{
 						className: 'col-sm-4',
 						type: 'select',
@@ -554,25 +557,7 @@
 							label: 'Comments',
 							className: 'form-control'
 						}
-					},
-					{
-						className: 'col-sm-4',
-						type: 'input',
-						key: 'quarter',
-						templateOptions: {
-							label: 'Quarter',
-							className: 'form-control'
-						}
-					},
-					{
-						className: 'col-sm-4',
-						type: 'input',
-						key: 'year',
-						templateOptions: {
-							label: 'Year',
-							className: 'form-control'
-						}
-					}										
+					}									
 		    ]
 		  }
 		];
