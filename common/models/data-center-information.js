@@ -71,21 +71,21 @@ module.exports = function(DataCenterInformation) {
 	  	var quarter;
 	  	var year;
 	  	var dataCenterInventoryId;
-	  	var componentName;
+	  	var component;
 	  	var id =0;
 		if(ctx.isNewInstance){
 			dataCenterInventoryId = ctx.instance.dataCenterInventoryId;
 			year = ctx.instance.year;
 			quarter = ctx.instance.quarter;
-			componentName = ctx.instance.componentName;
+			component = ctx.instance.component;
 		}else{
 			dataCenterInventoryId = ctx.data.dataCenterInventoryId;
 			year = ctx.data.year;
 			quarter = ctx.data.quarter;
 			id = ctx.data.id;
-			componentName = ctx.data.componentName;
+			component = ctx.data.component;
 		}
-		DataCenterInformation.find({where: {dataCenterInventoryId:dataCenterInventoryId,quarter:quarter,year:year,componentName:componentName}}, 
+		DataCenterInformation.find({where: {dataCenterInventoryId:dataCenterInventoryId,quarter:quarter,year:year,component:component}}, 
 			function(err, informations){
 				if(err){
 					next(err);

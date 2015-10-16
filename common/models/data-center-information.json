@@ -149,12 +149,14 @@
       "type": "string"
     },
     "quarter": {
-      "type": "number"
+      "type": "number",
+      "required": true
     },
     "year": {
-      "type": "number"
+      "type": "number",
+      "required": true
     },
-    "componentName": {
+    "component": {
       "type": "string"
     },
     "createdBy": {
