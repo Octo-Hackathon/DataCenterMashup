@@ -154,16 +154,10 @@
                   </div><!-- /.box-header -->
                   <div class="box-body">
                     <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
                         <div class="chart-responsive">
-                          <canvas id="pieChart" height="200"></canvas>
+                          <canvas id="line" class="chart chart-bar" chart-legend="true" chart-series="storageChart.series" chart-data="storageChart.data" chart-labels="storageChart.labels" chart-colours="storageChart.colors" height="200"></canvas>
                         </div><!-- ./chart-responsive -->
-                      </div><!-- /.col -->
-                      <div class="col-md-4">
-                        <ul class="chart-legend clearfix">
-                          <li><i class="fa fa-circle-o text-red"></i> Used Storage</li>
-                          <li><i class="fa fa-circle-o text-green"></i> Available Storage</li>
-                        </ul>
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                   </div><!-- ./box-body -->

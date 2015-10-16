@@ -21,7 +21,11 @@
         },
         serverChartData: function($stateParams, Restangular) {
           return Restangular.one('analytics').one('getQuarterlyServerCounts').get();
+        },
+        storageChartData: function($stateParams, Restangular) {
+          return Restangular.one('analytics').one('getQuarterlyStorageCounts').get();
         }
+        
       }
     });
   }
