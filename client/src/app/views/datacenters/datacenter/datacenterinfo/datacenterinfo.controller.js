@@ -68,11 +68,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'coreClassification',
 						templateOptions: {
 							label: 'Core Classification',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Core', value: 'core'},
+								{name: 'Non-Core', value: 'non-core'}
+							]							
 						}
 					},
 					{
@@ -171,11 +175,20 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'floorAreaClassification',
 						templateOptions: {
 							label: 'Floor Area Classification',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: '<100', value: 'less than 100'},
+								{name: '<250', value: 'less than 250'},
+								{name: '<500', value: 'less than 500'},
+								{name: '<1000', value: 'less than 1000'},
+								{name: '<2500', value: 'less than 2500'},
+								{name: '<5000', value: 'less than 5000'},
+								{name: '>5000', value: 'greater than 5000'}
+							]							
 						}
 					},
 					{
@@ -189,29 +202,45 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'tcoElectricityIncludedInCost',
 						templateOptions: {
 							label: 'TCO Electricity Included In Cost',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}																		
+							]							
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'tcoOwnershipType',
 						templateOptions: {
 							label: 'TCO Ownership Type',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'GSA Owned', value: 'gsa owned'},
+								{name: 'Lease and Retrofit', value: 'lease and retrofit'},
+								{name: 'Outsourcing to Other Agency', value: 'outsourcing to other agency'},
+								{name: 'Non Government Collocation', value: 'non government collocation'},
+								{name: 'Outsourcing to Contractor', value: 'outsourcing to contractor'},
+								{name: 'Government Collocation', value: 'government collocation'}								
+							]						
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'tcoProvidingServices',
 						templateOptions: {
 							label: 'TCO Providing Services',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}																		
+							]							
 						}
 					},
 					{
@@ -243,11 +272,18 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'tcoDataCenterTier',
 						templateOptions: {
 							label: 'TCO Data Center Tier',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Tier I', value: 'tier 1'},
+								{name: 'Tier II', value: 'tier 2'},
+								{name: 'Tier III', value: 'tier 3'},
+								{name: 'Tier IV', value: 'tier 4'},
+								{name: 'Server Room/Closet', value: 'server room closet'}																								
+							]							
 						}
 					},
 					{
@@ -270,11 +306,15 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'tcoElectricityIsMetered',
 						templateOptions: {
 							label: 'TCO Electricity Is Metered',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Yes', value: 'yes'},
+								{name: 'No', value: 'no'}																		
+							]							
 						}
 					},
 					{
