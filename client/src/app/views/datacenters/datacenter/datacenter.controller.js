@@ -86,20 +86,29 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'recordStatus',
 						templateOptions: {
 							label: 'Record Status',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Existing', value: 'existing'},
+								{name: 'Not Existing', value: 'not existing'}
+							]
 						}
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'recordValidity',
 						templateOptions: {
 							label: 'Record Validity',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'Added Facility', value: 'added facility'},
+								{name: 'Valid Facility', value: 'valid facility'},
+								{name: 'Invalid Facility', value: 'invalid vacility'}
+							]
 						}
 					},
 					{
@@ -113,11 +122,20 @@
 					},
 					{
 						className: 'col-sm-4',
-						type: 'input',
+						type: 'select',
 						key: 'component',
 						templateOptions: {
 							label: 'Component',
-							className: 'form-control'
+							className: 'form-control',
+							options: [
+								{name: 'CFO', value: 'cfo'},
+								{name: 'CFO/CPO', value: 'cfo cpo'},
+								{name: 'CPO', value: 'cpo'},
+								{name: 'FAS', value: 'fas'},
+								{name: 'OCIO', value: 'ocio'},
+								{name: 'OGP', value: 'ogp'},
+								{name: 'PBS', value: 'pbs'}
+							]
 						}
 					},
 					{
